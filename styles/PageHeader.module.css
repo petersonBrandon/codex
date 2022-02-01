@@ -34,8 +34,13 @@
 
 .logo {
     position: relative;
-    width: clamp(192px, 10vw, 512px);
-    height: 100%;
+    width: 192px;
+    height: 60%;
+    max-width: 192px;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 /*************************************************************************************/
@@ -143,7 +148,6 @@
 
     .logo {
         margin-left: 15px;
-        height: 7vh;
         width: 27vw;
     }
 

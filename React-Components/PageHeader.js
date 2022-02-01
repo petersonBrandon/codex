@@ -20,9 +20,11 @@ const PageHeader = () => {
         <header className={styles.container}>
             <nav className={styles.normalNav}>
                 <div className={styles.navContainer}>
-                    <div className={styles.logo}>
-                        <Image src={codexLogo} alt='CodexLogo' layout='fill'/>
-                    </div>
+                    <Link href="/">
+                        <div className={styles.logo}>
+                            <Image src={codexLogo} alt='CodexLogo' layout='responsive'/>
+                        </div>
+                    </Link>
                     <div className={styles.search}>
                         <div className={styles.searchBox}>
                             <input type='text' />
