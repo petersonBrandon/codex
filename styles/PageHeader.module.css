@@ -1,0 +1,249 @@
+/*************************************************************************************/
+/* Overall styles
+/*************************************************************************************/
+
+.container {
+    width: 100vw;
+}
+
+.normalNav {
+    width: 100%;
+    background-color: #0D0A0B;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.mobileNav {
+    display: none;
+}
+
+.navContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1248px;
+    height: 10vh;
+    width: 100%;
+}
+
+/*************************************************************************************/
+/* Logo styles
+/*************************************************************************************/
+
+.logo {
+    position: relative;
+    width: clamp(192px, 10vw, 512px);
+    height: 100%;
+}
+
+/*************************************************************************************/
+/* Search bar styles
+/*************************************************************************************/
+
+.search {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 4vh; 
+}
+
+.searchBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: white;
+    width: 30vw;
+    height: 100%;
+    border-radius: 100px 0px 0px 100px;
+}
+
+.search input{
+    outline: none;  
+    border: none;
+    width: 95%;
+    height: 98%; 
+    font-size: 1.3em;
+    margin-right: 10px;
+}
+
+.searchIcon {
+    background-color: #004AAD;
+    color: white;
+    height: 103%;
+    width: 50px;
+    border-radius: 0px 100px 100px 0px;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.searchIcon:hover {
+    background-color: #38B6FF;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+/*************************************************************************************/
+/* Login styles
+/*************************************************************************************/
+
+.login {
+    color: white;
+    font-size: 1.5em;
+    padding: 10px;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.login:hover {
+    color: #38B6FF;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+/*************************************************************************************/
+/* Mobile styles
+/*************************************************************************************/
+
+@media only screen and (max-width: 1100px) {
+    .navContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .normalNav {
+        display: none;
+    }
+
+    .mobileNav {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        background-color: #0D0A0B;
+    }
+
+    .mobileHeader {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        height: 7vh;
+    }
+
+    .logo {
+        margin-left: 15px;
+        height: 7vh;
+        width: 27vw;
+    }
+
+    .mobileHeader input {
+        display: none;
+    }
+
+    /*************************************************************************************/
+    /* Hamburger animations and styling
+    /*************************************************************************************/
+
+    .hamburger {
+        width: 40px;
+        height: 24px;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        margin: 15px 15px;
+        z-index: 1;
+    }
+
+    .hamburger span {
+        background-color:white;
+        position: absolute;
+        border-radius: 2px;
+        transition: .3s cubic-bezier(.8, .5, .2, 1.4);
+        width: 100%;
+        height: 3px;
+    }
+
+    .hamburger span:nth-child(1){
+        top:0px;
+        left: 0px;
+    }
+    
+    .hamburger span:nth-child(2){
+        top:10px;
+        left: 0px;
+    }
+    
+    .hamburger span:nth-child(3){
+        bottom:0px;
+        left: 0px;
+    }
+
+    .hamburger.open span:nth-child(1){
+        transform: rotate(45deg);
+        top: 13PX;
+        left: 0px;
+    }
+    
+    .hamburger.open span:nth-child(2){
+        transform: scale(0);
+        transition-duration: 50ms
+    }
+    
+    .hamburger.open span:nth-child(3){
+        transform: rotate(-45deg);
+        top: 13PX;
+        left: 0px;
+    }
+
+    /*************************************************************************************/
+    /* Dropdown menu
+    /*************************************************************************************/
+
+    .dropClosed {
+        display: none;
+    }
+
+    .dropOpen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #161212;
+        height: 93vh;
+        width: 100vw;
+    }
+
+    .searchBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100px;
+        height: 2em;
+        width: 85%;
+        margin-top: 30px;
+    }
+
+    .searchBox input {
+        width: 90%;
+        border: none;
+        height: 90%;
+        outline: none;
+        font-size: 1.25em;
+    }
+
+    .mItemsSection {
+        width: 80%;
+        margin-top: 10px;
+    }
+}
