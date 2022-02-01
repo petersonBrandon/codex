@@ -1,0 +1,35 @@
+.container {
+    height: 10vh;
+    background-color: #161212;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+}
+
+.footContainer {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.footContainer p {
+    font-size: calc(0.5em + 1vw);
+}
+
+.socialNav {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.socialLink {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}

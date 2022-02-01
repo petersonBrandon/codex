@@ -4,6 +4,8 @@
 
 .container {
     width: 100vw;
+    position: fixed;
+    top: 0;
 }
 
 .normalNav {
@@ -23,9 +25,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    max-width: 1248px;
     height: 10vh;
-    width: 100%;
+    width: 70%;
 }
 
 /*************************************************************************************/
@@ -95,10 +96,10 @@
 }
 
 /*************************************************************************************/
-/* Login styles
+/* link styles
 /*************************************************************************************/
 
-.login {
+.link {
     color: white;
     font-size: 1.5em;
     padding: 10px;
@@ -107,7 +108,7 @@
     transition-duration: 0.5s;
 }
 
-.login:hover {
+.link:hover {
     color: #38B6FF;
 
     transition-timing-function: ease;

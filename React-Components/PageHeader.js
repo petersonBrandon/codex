@@ -25,22 +25,30 @@ const PageHeader = () => {
                             <Image src={codexLogo} alt='CodexLogo' layout='responsive'/>
                         </div>
                     </Link>
+                    <div className={styles.link}>
+                        <Link href='/New'>New</Link>
+                    </div>
+                    <div className={styles.link}>
+                        <Link href='/Projects'>Projects</Link>
+                    </div>
                     <div className={styles.search}>
                         <div className={styles.searchBox}>
                             <input type='text' />
                         </div>
                         <MdSearch className={styles.searchIcon}/>
                     </div>
-                    <div className={styles.login}>
-                        <Link href="/login">Login</Link>
+                    <div className={styles.link}>
+                        <Link href="/Login">Login</Link>
                     </div>
                 </div>
             </nav>
             <nav className={styles.mobileNav}>
                 <div className={styles.mobileHeader}>
-                    <div className={styles.logo}>
-                        <Image src={codexLogo} alt='CodexLogo' layout='responsive'/>
-                    </div>
+                    <Link href="/">
+                        <div className={styles.logo}>
+                            <Image src={codexLogo} alt='CodexLogo' layout='responsive'/>
+                        </div>
+                    </Link>
                     <input type="checkbox" checked={isChecked}/>
                     <div className={styles.hamburgerContainer}>
                         <div className={`${styles.hamburger} ${isChecked ? styles.open : ''}`} 
@@ -57,7 +65,7 @@ const PageHeader = () => {
                     </div>
                     <div className={styles.mItemsSection}>
                         <div className={styles.login}>
-                            <Link href="/login">Login</Link>
+                            <Link href="/Login">Login</Link>
                         </div>
                     </div>
                 </div>
