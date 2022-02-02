@@ -1,0 +1,42 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 60%;
+    height: 100%;
+    font-size: calc(0.5em + 1vw);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.heading h1 {
+    margin-bottom: 10px;
+    font-size: calc(1em + 1vw);
+}
+
+.heading h2 {
+    font-size: calc(0.3em + 0.5vw);
+}
+
+.heading h3 {
+    font-size: calc(0.2em + 0.5vw);
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.body {
+    width: 90%;
+}

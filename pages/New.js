@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Card from '../React-Components/Card';
 import PageFooter from '../React-Components/PageFooter';
 import PageHeader from '../React-Components/PageHeader';
 import dbConnect from '../lib/connectDB';
@@ -39,8 +38,14 @@ const New = ({ postsData }) => {
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     {posts.map((post) => (
-                        <Link href={`/new/${post._id}`}>
-                            <Card title={post.title} text={post.text}/>
+                        <Link href={`/new/${post._id}`} key={post._id}>
+                            <div className={styles.post}>
+                                <h1 className={styles.postTitle}>{post.title}</h1>
+                                <div className={styles.postContent}>
+                                    <p className={styles.postText}>{post.text}</p>
+                                    <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                                </div>
+                            </div>
                         </Link>
                     ))}
                 </section>
