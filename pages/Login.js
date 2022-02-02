@@ -3,6 +3,9 @@ import Link from 'next/link';
 import PageFooter from '../React-Components/PageFooter';
 import PageHeader from '../React-Components/PageHeader';
 
+import { AiOutlineUser } from "react-icons/ai";
+import { BiLockAlt } from "react-icons/bi";
+
 import styles from '../styles/Login.module.css';
 
 const Login = () => {
@@ -19,14 +22,18 @@ const Login = () => {
                     <h1>Login to your account.</h1>
                     <form className={styles.loginForm}>
                         <div className={styles.inputField}>
-                            <p>Username:</p>
-                            <input type='username'/>
+                            <div className={styles.icon}>
+                                <AiOutlineUser />
+                            </div>
+                            <input type='username' placeholder='username'/>
                         </div>
                         <div className={styles.inputField}>
-                            <p>Password:</p>
-                            <input type='password'/>
+                            <div className={styles.icon}>
+                                <BiLockAlt />
+                            </div>
+                            <input type='password' placeholder='password'/>
                         </div>
-                        <button className={styles.formButton}>Log In</button>
+                        <button className={styles.formButton}>Sign In</button>
                     </form>
                 </section>
             </main>
