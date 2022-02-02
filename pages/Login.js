@@ -9,6 +9,7 @@ import { BiLockAlt } from "react-icons/bi";
 import styles from '../styles/Login.module.css';
 
 const Login = () => {
+    const loginSuccess = true;
     return (
         <div className={styles.container}>
             <Head>
@@ -21,11 +22,14 @@ const Login = () => {
                 <section className={styles.bodyContainer}>
                     <h1>Login to your account.</h1>
                     <form className={styles.loginForm}>
+                        <div className={styles.message}>
+                            <p className={loginSuccess ? styles.mclosed : styles.mopen}>*Email or password incorrect.</p>
+                        </div>
                         <div className={styles.inputField}>
                             <div className={styles.icon}>
                                 <AiOutlineUser />
                             </div>
-                            <input type='username' placeholder='username'/>
+                            <input type='username' placeholder='email'/>
                         </div>
                         <div className={styles.inputField}>
                             <div className={styles.icon}>
