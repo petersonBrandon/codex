@@ -29,6 +29,7 @@ const Projects = ({ projectsData }) => {
     if (projectsData) {
         projects = JSON.parse(projectsData);
     }
+
     return (
         <div className={styles.container}>
             <Head>

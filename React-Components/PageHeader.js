@@ -5,6 +5,7 @@ import styles from '../styles/PageHeader.module.css'
 
 import { MdSearch } from "react-icons/md";
 import { useState } from 'react';
+import { VscAdd } from 'react-icons/vsc';
 
 import codexLogo from '../public/images/Codex_Logo.png';
 
@@ -15,6 +16,8 @@ const PageHeader = () => {
         setChecked(!isChecked);
         console.log(isChecked);
     }
+
+    let isLoggedIn = true;
 
     return (
         <header className={styles.container}>
@@ -37,8 +40,16 @@ const PageHeader = () => {
                         </div>
                         <MdSearch className={styles.searchIcon}/>
                     </div>
+                    {isLoggedIn ? 
+                        <div className={styles.link}>
+                            <Link href="/createPost">
+                                <VscAdd className={styles.addIcon}/>
+                            </Link>
+                        </div>
+                        : <meta/>
+                    }
                     <div className={styles.link}>
-                        <Link href="/login/Login">Login</Link>
+                        {isLoggedIn ? <Link href="/login/Login">Logout</Link> : <Link href="/login/Login">Login</Link>}
                     </div>
                 </div>
             </nav>
