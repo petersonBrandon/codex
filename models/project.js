@@ -18,14 +18,13 @@ const projectSchema = new Schema({
         type: String,
         required: true
     },
-    posts: [
-        {
-            postId: {
-                type: Schema.Types.ObjectId,
-                ref: 'Post'
-            }
+    posts: [ {
+        postId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Post',
+            required: true
         }
-    ] 
+    } ]
 });
 
 mongoose.models = {};

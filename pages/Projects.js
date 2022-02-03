@@ -12,7 +12,7 @@ export async function getServerSideProps() {
     await dbConnect();
 
     try {
-        let projectsData = await Project.find({})
+        let projectsData = await Project.find({});
         projectsData = JSON.stringify(projectsData);
         return {
             props: {projectsData}

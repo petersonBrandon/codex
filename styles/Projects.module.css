@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 10vw;
+    height: 11vw;
     width: 100%;
     background-color: #161212;
     margin-top: 20px;
@@ -83,6 +83,10 @@
     justify-content: space-between;
     height: 80%;
     width: 90%;
+}
+
+.projectDesc {
+    font-size: calc(0.4em + 0.5vw);
 }
 
 .cardFooter {
