@@ -38,7 +38,7 @@ const PageHeader = () => {
                         <MdSearch className={styles.searchIcon}/>
                     </div>
                     <div className={styles.link}>
-                        <Link href="/Login">Login</Link>
+                        <Link href="/login/Login">Login</Link>
                     </div>
                 </div>
             </nav>
