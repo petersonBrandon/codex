@@ -1,10 +1,10 @@
-import dbConnect from '../../lib/connectDB';
-import Post from '../../models/post';
+import dbConnect from '../../../lib/connectDB';
+import Post from '../../../models/post';
 import Head from 'next/head';
 
-import styles from '../../styles/Post.module.css';
-import PageHeader from '../../React-Components/PageHeader';
-import PageFooter from '../../React-Components/PageFooter';
+import styles from '../../../styles/Post.module.css';
+import PageHeader from '../../../React-Components/PageHeader';
+import PageFooter from '../../../React-Components/PageFooter';
 
 export async function getServerSideProps({ params }) {
  

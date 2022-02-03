@@ -41,7 +41,25 @@ const Projects = ({ projectsData }) => {
             <PageHeader />
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
-                    <h1>{projects[0].title}</h1>
+                    <section className={styles.big_hero_centered}>
+                        <h1>Projects</h1>
+                    </section>
+                    <section className={styles.projectsContainer}>
+                        {projects.map((project) => (
+                            <Link href={`/dynamicRoutes/projectPosts/${project._id}`} key={project._id}>
+                                <div className={styles.projectCard}>
+                                    <h1 className={styles.projectTitle}>{project.title}</h1>
+                                    <div className={styles.projectContent}>
+                                        <p className={styles.projectDesc}>{project.description}</p>
+                                        <div className={styles.cardFooter}>
+                                            <p className={styles.postNumber}>Posts: {project.posts.length}</p>
+                                            <p className={styles.projectDate}>Date Started: {project.dateStarted}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))}
+                    </section>
                 </section> 
             </main>
             <PageFooter />
