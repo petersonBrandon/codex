@@ -125,6 +125,7 @@
 
 .formButton:hover {
     background-color: #75BD94;
+    cursor: pointer;
 
     transition-timing-function: ease;
     transition-duration: 0.5s;
