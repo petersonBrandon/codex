@@ -36,6 +36,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   height: 30vw;
 }
 
@@ -84,4 +85,48 @@
 
   transition-timing-function: ease;
   transition-duration: 0.5s;
+}
+
+@media only screen and (max-width: 1100px) {
+  .bodyContainer {
+    width: 90%;
+  }
+
+  .big_hero_centered {
+    height: 100vw;
+  }
+
+  .big_hero_centered h1 {
+    font-size: calc(3em + 1vw);
+    text-align: center;
+    margin: 0;
+  }
+  
+  .big_hero_centered p {
+    font-size: calc(0.9em + 1vw);
+    text-align: center;
+  }
+
+  .links {
+    height: 100%;
+    margin-bottom: 30px;
+  }
+
+  .linkCard {
+    height: 100%;
+    margin: 0;
+    margin-top: 30px;
+  }
+
+  .linkCard h1 {
+    font-size: calc(1.5em + 1vw);
+  }
+  
+  .linkCard p {
+    font-size: calc(1em + 1vw);
+  }
+  
+  .linkCard a {
+    font-size: calc(1em + 1vw);
+  }
 }
