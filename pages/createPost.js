@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import PageFooter from '../React-Components/PageFooter';
 import PageHeader from '../React-Components/PageHeader';
-import { UseState } from 'react';
+import { useState } from 'react';
 
 import styles from '../styles/createPost.module.css';
 
@@ -30,7 +30,7 @@ const createPost = ({projectsData}) => {
     if (projectsData) {
         projects = JSON.parse(projectsData);
     }
-    const [createProject, setCreateProject] = UseState(false);
+    const [createProject, setCreateProject] = useState(false);
     const toggleCreateProject = () => {
         setCreateProject(!createProject);
     }
