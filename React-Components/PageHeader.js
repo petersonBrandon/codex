@@ -17,7 +17,7 @@ const PageHeader = () => {
         console.log(isChecked);
     }
 
-    let isLoggedIn = true;
+    let isLoggedIn = false;
 
     return (
         <header className={styles.container}>
