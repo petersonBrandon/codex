@@ -47,7 +47,7 @@ const Projects = ({ projectsData }) => {
                     </section>
                     <section className={styles.projectsContainer}>
                         {projects.map((project) => (
-                            <Link href={`/dynamicRoutes/projectPosts/${project._id}`} key={project._id}>
+                            <Link href={`/dynamicRoutes/projectPosts/${project._id}`} key={project._id} passHref>
                                 <div className={styles.projectCard}>
                                     <h1 className={styles.projectTitle}>{project.title}</h1>
                                     <div className={styles.projectContent}>
