@@ -54,7 +54,7 @@ const createPost = ({projectsData}) => {
                             <select name='project' className={styles.projectSelect}>
                                 <option value='default' disabled hidden selected>select project</option>
                                 {projects.map((project) => (
-                                    <option value={project._id}>{project.title}</option>
+                                    <option key={project._id} value={project._id}>{project.title}</option>
                                 ))}
                             </select>
                         </div>
