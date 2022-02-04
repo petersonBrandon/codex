@@ -38,7 +38,7 @@ const New = ({ postsData }) => {
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     {posts.map((post) => (
-                        <Link href={`/dynamicRoutes/posts/${post._id}`} key={post._id} passHref>
+                        <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
                             <div className={styles.post}>
                                 <h1 className={styles.postTitle}>{post.title}</h1>
                                 <div className={styles.postContent}>
