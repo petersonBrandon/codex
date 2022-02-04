@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import PageFooter from '../React-Components/PageFooter';
 import PageHeader from '../React-Components/PageHeader';
-import React, { useState } from 'react';
 
 import styles from '../styles/createPost.module.css';
 
 import dbConnect from '../lib/connectDB';
 import Project from'../models/project';
+import CreatePost from '../React-Components/CreatePost';
 
 export async function getServerSideProps() {
  
@@ -30,10 +30,6 @@ const createPost = ({projectsData}) => {
     if (projectsData) {
         projects = JSON.parse(projectsData);
     }
-    const [createProject, setCreateProject] = useState(false);
-    const toggleCreateProject = () => {
-        setCreateProject(!createProject);
-    }
 
     return (
         <div className={styles.container}>
@@ -48,38 +44,7 @@ const createPost = ({projectsData}) => {
                 <section className={styles.bodyContainer}>
                     <h1>Create Post.</h1>
                     <form className={styles.postForm}>
-                        <p className={styles.projectHeading}>Project:</p>
-                        <div className={styles.project}>
-                            <span className={styles.createProject} onClick={toggleCreateProject}>Create Project</span>
-                            <select name='project' className={styles.projectSelect}>
-                                <option value='default' disabled hidden selected>select project</option>
-                                {projects.map((project) => (
-                                    <option key={project._id} value={project._id}>{project.title}</option>
-                                ))}
-                            </select>
-                        </div>
-                        {createProject ? 
-                            <div className={styles.createPSection}>
-                                <div className={styles.inputField}>
-                                    <p>Project Title:</p>
-                                    <input type='text' placeholder='enter title'></input>
-                                </div>
-                                <div className={styles.inputField}>
-                                    <p>Project Description:</p>
-                                    <textarea type='text' placeholder='enter description'></textarea>
-                                </div>
-                            </div>
-                            :
-                            <meta />
-                        }
-                        <div className={styles.inputField}>
-                            <p>Title:</p>
-                            <input type='text' placeholder='enter title'></input>
-                        </div>
-                        <div className={styles.inputField}>
-                            <p>Text:</p>
-                            <textarea type='text' placeholder='enter text'></textarea>
-                        </div>
+                        <CreatePost projects={projects} />
                         <button className={styles.formButton} type="submit">Post</button>
                     </form>
                 </section>
