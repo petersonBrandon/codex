@@ -42,7 +42,7 @@ const New = ({ postsData }) => {
                             <div className={styles.post}>
                                 <h1 className={styles.postTitle}>{post.title}</h1>
                                 <div className={styles.postContent}>
-                                    <p className={styles.postText}>{post.text}</p>
+                                    <p className={styles.postText}>{post.excerpt}</p>
                                     <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
                                 </div>
                             </div>
