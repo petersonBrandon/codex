@@ -72,7 +72,7 @@ const PageHeader = () => {
                 </div>
                 <div className={`${isChecked ? styles.dropOpen : styles.dropClosed}`}>
                     <div className={styles.searchBox}>
-                        <input type='text' />
+                        <input type='text' placeholder='Search...'/>
                     </div>
                     <div className={styles.mItemsSection}>
                         <div className={styles.link}>
