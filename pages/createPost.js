@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import PageFooter from '../React-Components/PageFooter';
 import PageHeader from '../React-Components/PageHeader';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from '../styles/createPost.module.css';
 
