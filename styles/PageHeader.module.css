@@ -6,6 +6,7 @@
     width: 100vw;
     position: fixed;
     top: 0;
+    z-index: 100;
 }
 
 .normalNav {
@@ -236,6 +237,7 @@
         background-color: #161212;
         height: 93vh;
         width: 100vw;
+        color: white;
     }
 
     .searchBox {

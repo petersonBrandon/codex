@@ -75,8 +75,17 @@ const PageHeader = () => {
                         <input type='text' />
                     </div>
                     <div className={styles.mItemsSection}>
-                        <div className={styles.login}>
-                            <Link href="/Login">Login</Link>
+                        <div className={styles.link}>
+                            <Link href='/'>Home</Link>
+                        </div>
+                        <div className={styles.link}>
+                            <Link href='/New'>New</Link>
+                        </div>
+                        <div className={styles.link}>
+                            <Link href='/Projects'>Projects</Link>
+                        </div>
+                        <div className={styles.link}>
+                            <Link href="/login/Login">Login</Link>
                         </div>
                     </div>
                 </div>
