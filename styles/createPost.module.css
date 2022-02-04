@@ -59,23 +59,6 @@
     background-color: #F5F5F5;
 }
 
-.forgotPassword {
-    text-align: right;
-    font-size: calc(0.1em + 0.5vw);
-    cursor: pointer;
-    color: #004aad;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.forgotPassword:hover {
-    color: #0A74FF;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
 .formButton {
     background-color: #4c9f70;
     border: none;
@@ -93,33 +76,6 @@
 .formButton:hover {
     background-color: #75BD94;
     cursor: pointer;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.createAccount {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: calc(0.1em + 0.5vw);
-}
-
-.createAccount p {
-    margin-right: 5px;
-}
-
-.createAccount a {
-    color: #004aad;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.createAccount a:hover {
-    color: #0A74FF;
 
     transition-timing-function: ease;
     transition-duration: 0.5s;
