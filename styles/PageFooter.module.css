@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-self: center;
     align-items: center;
+    z-index: 99;
 }
 
 .footContainer {
@@ -32,4 +33,23 @@
     width: 50px;
     height: 50px;
     margin: 5px;
+}
+
+@media only screen and (max-width: 1100px) {
+    .container {
+        height: 7vh;
+    }
+
+    .footContainer {
+        width: 90%;
+    }
+
+    .socialNav {
+        margin: 5px;
+    }
+
+    .socialLink {
+        width: 40px;
+        height: 40px;
+    }
 }
