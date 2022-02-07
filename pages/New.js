@@ -12,7 +12,8 @@ export async function getServerSideProps() {
     await dbConnect();
 
     try {
-        let postsData = await Post.find({})
+        let postsData = await Post.find({}).sort({dateCreated: -1});
+
         postsData = JSON.stringify(postsData);
         return {
             props: {postsData}

@@ -24,8 +24,17 @@ export default async function handler(req, res) {
         const cDay = date.getDate();
         const cMonth = date.getMonth() + 1;
         const cYear = date.getFullYear();
+        let cHour = date.getHours();
+        const cMinutes = date.getMinutes();
 
-        const currentDate = `${cMonth}/${cDay}/${cYear}`;
+        let tail = "am";
+
+        if (cHour > 12) {
+            tail = "pm";
+            cHour = cHour - 12;
+        }
+
+        const currentDate = `${cHour}:${cMinutes}${tail}  ${cMonth}/${cDay}/${cYear}`;
 
         for (let i = 0; i < 150; i++) {
             if ( postText[i] !== undefined ) {
