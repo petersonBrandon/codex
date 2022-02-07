@@ -3,7 +3,7 @@ import PageFooter from '../../React-Components/PageFooter';
 import PageHeader from '../../React-Components/PageHeader';
 
 import styles from '../../styles/Login.module.css';
-import LoginForm from '../../React-Components/Login/LoginForm';
+import LoginForm from '../../React-Components/login/LoginForm';
 
 
 
