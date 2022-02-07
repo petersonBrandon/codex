@@ -1,13 +1,12 @@
 import Head from 'next/head';
+import PasswordRecForm from '../../React-Components/login/PasswordRecForm';
 import PageFooter from '../../React-Components/PageFooter';
 import PageHeader from '../../React-Components/PageHeader';
-
-import { AiOutlineUser } from "react-icons/ai";
 
 import styles from '../../styles/passwordRecovery.module.css'
 
 const passwordRecovery = () => {
-    const validEmail = true;
+    const validEmail = false;
     return (
         <div className={styles.container}>
             <Head>
@@ -20,18 +19,7 @@ const passwordRecovery = () => {
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <h1>Password Recovery.</h1>
-                    <form className={styles.loginForm}>
-                        <div className={styles.message}>
-                            <p className={validEmail ? styles.mclosed : styles.mopen}>*Email is incorrect.</p>
-                        </div>
-                        <div className={styles.inputField}>
-                            <div className={styles.icon}>
-                                <AiOutlineUser />
-                            </div>
-                            <input type='username' placeholder='email'/>
-                        </div>
-                        <button className={styles.formButton}>Send Recovery Email</button>
-                    </form>
+                    <PasswordRecForm />
                 </section>
             </main>
             <PageFooter />
