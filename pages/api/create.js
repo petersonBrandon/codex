@@ -33,6 +33,8 @@ export default async function handler(req, res) {
             } 
         }
 
+        postExcerpt += "...";
+
         if (isNewProj) {
             const post = new Post({
                 title: postTitle,
