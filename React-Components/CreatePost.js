@@ -12,22 +12,23 @@ const CreatePost = ({projects}) => {
             <p className={styles.projectHeading}>Project:</p>
                 <div className={styles.project}>
                     <span className={styles.createProject} onClick={toggleCreateProject}>Create Project</span>
-                        <select name='project' className={styles.projectSelect}>
+                    {!createProject ? <select name='projectTitleDropdown' className={styles.projectSelect}>
                             <option value='default' disabled hidden selected>select project</option>
                             {projects.map((project) => (
                                 <option key={project._id} value={project._id}>{project.title}</option>
                             ))}
-                        </select>
+                        </select> : <meta/>}
                 </div>
+                <input type='checkbox' name='createProject' defaultChecked={createProject} className={styles.hiddenCheckbox} />
                 {createProject ? 
                     <div className={styles.createPSection}>
                         <div className={styles.inputField}>
                             <p>Project Title:</p>
-                            <input type='text' placeholder='enter title'></input>
+                            <input name="projectTitle" type='text' placeholder='enter title'></input>
                         </div>
                         <div className={styles.inputField}>
                             <p>Project Description:</p>
-                            <textarea type='text' placeholder='enter description'></textarea>
+                            <textarea name="projectDesc" type='text' placeholder='enter description'></textarea>
                         </div>
                     </div>
                         :
@@ -35,11 +36,11 @@ const CreatePost = ({projects}) => {
                 }
                 <div className={styles.inputField}>
                     <p>Title:</p>
-                    <input type='text' placeholder='enter title'></input>
+                    <input name="postTitle" type='text' placeholder='enter title'></input>
                 </div>
                 <div className={styles.inputField}>
                     <p>Text:</p>
-                    <textarea type='text' placeholder='enter text'></textarea>
+                    <textarea name="postText" type='text' placeholder='enter text'></textarea>
                 </div>
         </div>
     );

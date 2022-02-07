@@ -43,7 +43,7 @@ const createPost = ({projectsData}) => {
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <h1>Create Post.</h1>
-                    <form className={styles.postForm}>
+                    <form className={styles.postForm} action='/api/create' method='POST'>
                         <CreatePost projects={projects} />
                         <button className={styles.formButton} type="submit">Post</button>
                     </form>

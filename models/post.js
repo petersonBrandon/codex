@@ -24,7 +24,6 @@ const postSchema = new Schema({
     },
     dateEdited: {
         type: String,
-        required: true
     }
 });
 

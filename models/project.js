@@ -16,7 +16,6 @@ const projectSchema = new Schema({
     },
     dateEnded: {
         type: String,
-        required: true
     },
     posts: [ {
         postId: {
