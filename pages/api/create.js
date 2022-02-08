@@ -36,7 +36,7 @@ export default async function handler(req, res) {
 
         const currentDate = `${cHour}:${cMinutes}${tail}  ${cMonth}/${cDay}/${cYear}`;
 
-        for (let i = 0; i < 150; i++) {
+        for (let i = 0; i < 100; i++) {
             if ( postText[i] !== undefined ) {
                 postExcerpt += postText[i];
             } 
