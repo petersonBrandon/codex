@@ -136,10 +136,10 @@
     }
 
     .postNumber {
-        font-size: calc(1em + 1vw);
+        font-size: calc(0.75em + 1vw);
     }
     
     .projectDate {
-        font-size: calc(1em + 1vw);
+        font-size: calc(0.75em + 1vw);
     }
 }
