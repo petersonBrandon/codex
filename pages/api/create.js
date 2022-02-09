@@ -24,12 +24,16 @@ export default async function handler(req, res) {
         const cDay = date.getDate();
         const cMonth = date.getMonth() + 1;
         const cYear = date.getFullYear();
-        let cHour = date.getHours();
-        const cMinutes = date.getMinutes();
+        const cHour = date.getHours();
+        let cMinutes = date.getMinutes();
 
-        const currentDate = `${cHour}:${cMinutes}${tail}  ${cMonth}/${cDay}/${cYear}`;
+        if (cMinutes < 10) {
+            cMinutes = `0${cMinutes}`;
+        }
 
-        for (let i = 0; i < 100; i++) {
+        const currentDate = `${cHour}:${cMinutes}  ${cMonth}/${cDay}/${cYear}`;
+
+        for (let i = 0; i < 120; i++) {
             if ( postText[i] !== undefined ) {
                 postExcerpt += postText[i];
             } 
