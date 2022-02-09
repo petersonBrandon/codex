@@ -168,6 +168,10 @@
         text-align: center;
     }
 
+    .message {
+        font-size: calc(1em + 1vw);
+    }
+
     .loginForm {
         width: 100%;
     }
