@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
         const isNewProj = req.body.createProject;
 
-        const project = req.body.projectSelect;
+        const projectId = req.body.projectId;
         const newProjectTitle = req.body.projectTitle;
         const newProjDesc = req.body.projectDesc;
 
@@ -30,6 +30,8 @@ export default async function handler(req, res) {
         if (cMinutes < 10) {
             cMinutes = `0${cMinutes}`;
         }
+
+        console.log(req.body);
 
         const currentDate = `${cHour}:${cMinutes}  ${cMonth}/${cDay}/${cYear}`;
 
@@ -61,7 +63,7 @@ export default async function handler(req, res) {
             await post.save();
             await newProject.save();
         } else {
-            const updateProj = await Project.findById(project);
+            const updateProj = await Project.findById(projectId);
             const post = new Post({
                 title: postTitle,
                 author: "Brandon Peterson",
@@ -77,7 +79,6 @@ export default async function handler(req, res) {
             await post.save();
             await Project.findOneAndUpdate(updateProj._id, updateProj, { new: true });
         }
-
         res.redirect('/New');
     }
   }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'
 import { useForm, Controller } from 'react-hook-form';
 import Select from 'react-select'
 
@@ -6,6 +7,7 @@ import styles from '../styles/createPost.module.css';
 
 const CreatePost = ({projects}) => {
     const [createProject, setCreateProject] = useState(false);
+    const [projectId, setProjId] = useState();
     const toggleCreateProject = () => {
         setCreateProject(!createProject);
     }
@@ -18,7 +20,29 @@ const CreatePost = ({projects}) => {
     } = useForm();
         
     const onSubmit = (data) => {
-        console.log(data);
+        setProjId(data.projectSelect.value);
+        if(!createProject) {
+            axios.post('/api/create', {
+                postTitle: data.postTitle,
+                projectId: data.projectSelect.value,
+                postText: data.postText,
+                createProject: createProject
+            })
+            .then((res) => {
+                window.location = "/New"
+            });
+        } else {
+            axios.post('/api/create', {
+                projectTitle: data.projectTitle,
+                projectDesc: data.projectDesc,
+                postTitle: data.postTitle,
+                postText: data.postText,
+                createProject: createProject
+            })
+            .then((res) => {
+                window.location = "/New"
+            });
+        }
     };
 
     let options = [];
@@ -28,7 +52,7 @@ const CreatePost = ({projects}) => {
     });
 
     return (
-        <form className={styles.postForm} action='/api/create' method='POST'>
+        <form className={styles.postForm} onSubmit={handleSubmit(onSubmit)}>
             <h1 className={styles.projectHeading}>Project:</h1>
                 <div className={styles.project}>
                     <span className={styles.createProject} onClick={toggleCreateProject}>Create Project</span>
@@ -39,7 +63,7 @@ const CreatePost = ({projects}) => {
                             control={control}  
                             rules={{required: !createProject}}                         
                             render={({ field }) => (
-                                <Select options={options} {...field} label="projectSelect" className={styles.projectSelect}/>
+                                <Select options={options} {...field} name="projectSelect" className={styles.projectSelect}/>
                             )} 
                         />
                          : <meta/>}
@@ -47,6 +71,7 @@ const CreatePost = ({projects}) => {
                 {!createProject ? errors.projectSelect && <p className={styles.selectError}>*Please select or create a project.</p>
                 : <meta />}
                 <input type='checkbox' name='createProject' defaultChecked={createProject} className={styles.hiddenCheckbox} />
+                <input type='text' name='projectSelect' value={projectId} className={styles.hiddenCheckbox} />
                 {createProject ? 
                     <div className={styles.createPSection}>
                         <div className={styles.inputField}>
