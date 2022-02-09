@@ -25,8 +25,8 @@
     width: 60%;
 }
 
-.projectHeading {
-    font-size: calc(0.4em + 1vw);
+.postForm h1 {
+    font-size: calc(1em + 0.5vw);
     margin: 0;
     margin-top: 20px;
 }
@@ -59,6 +59,7 @@
     border: none;
     border-radius: 10px;
     color: white;
+    cursor: pointer;
 
     transition-timing-function: ease;
     transition-duration: 0.5s;
@@ -73,13 +74,17 @@
 }
 
 .projectSelect {
-    width: 60%;
-    height: 100%;
+    width: 65%;
     font-size: calc(0.3em + 0.5vw);
     font-family: 'Open Sans', sans-serif;
     border: none;
     border-radius: 10px;
     background-color: #EBEBEB;
+}
+
+.selectError {
+    font-size: calc(0.2em + 0.5vw);
+    color: #FB3741;
 }
 
 .inputField {
@@ -88,9 +93,15 @@
     width: 100%;
 }
 
-.inputField p {
+.inputField h1 {
     margin: 0;
     width: 100%;
+    font-size: calc(1em + 0.5vw);
+}
+
+.inputField p {
+    font-size: calc(0.2em + 0.5vw);
+    color: #FB3741;
 }
 
 .inputField input {

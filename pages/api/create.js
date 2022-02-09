@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
         const isNewProj = req.body.createProject;
 
-        const project = req.body.projectTitleDropdown;
+        const project = req.body.projectSelect;
         const newProjectTitle = req.body.projectTitle;
         const newProjDesc = req.body.projectDesc;
 
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
                 text: postText,
                 dateCreated: currentDate
             });
-            
+
             updateProj.posts.push({
                 postId: post._id
             });
