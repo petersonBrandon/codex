@@ -27,13 +27,6 @@ export default async function handler(req, res) {
         let cHour = date.getHours();
         const cMinutes = date.getMinutes();
 
-        let tail = "am";
-
-        if (cHour > 12) {
-            tail = "pm";
-            cHour = cHour - 12;
-        }
-
         const currentDate = `${cHour}:${cMinutes}${tail}  ${cMonth}/${cDay}/${cYear}`;
 
         for (let i = 0; i < 100; i++) {
