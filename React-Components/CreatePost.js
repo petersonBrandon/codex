@@ -53,7 +53,7 @@ const CreatePost = ({projects}) => {
 
     return (
         <form className={styles.postForm} onSubmit={handleSubmit(onSubmit)}>
-            <h1 className={styles.projectHeading}>Project:</h1>
+            <h2 className={styles.projectHeading}>Project:</h2>
                 <div className={styles.project}>
                     <span className={styles.createProject} onClick={toggleCreateProject}>Create Project</span>
                     {!createProject ? 
@@ -75,12 +75,12 @@ const CreatePost = ({projects}) => {
                 {createProject ? 
                     <div className={styles.createPSection}>
                         <div className={styles.inputField}>
-                            <h1>Project Title:</h1>
+                            <h2>Project Title:</h2>
                             <input {...register('projectTitle', {required: createProject})} name="projectTitle" type='text' placeholder='enter title'></input>
                             {errors.projectTitle && <p>*Please enter the project title.</p>}
                         </div>
                         <div className={styles.inputField}>
-                            <h1>Project Description:</h1>
+                            <h2>Project Description:</h2>
                             <textarea {...register('projectDesc', {required: createProject})} name="projectDesc" type='text' placeholder='enter description'></textarea>
                             {errors.projectDesc && <p>*Please enter the project description.</p>}
                         </div>
@@ -89,12 +89,12 @@ const CreatePost = ({projects}) => {
                         <meta />
                 }
                 <div className={styles.inputField}>
-                    <h1>Title:</h1>
+                    <h2>Title:</h2>
                     <input {...register('postTitle', {required: true})} name="postTitle" type='text' placeholder='enter title'></input>
                     {errors.postTitle && <p>*Please enter a title.</p>}
                 </div>
                 <div className={styles.inputField}>
-                    <h1>Text:</h1>
+                    <h2>Text:</h2>
                     <textarea {...register('postText', {required: true})} name="postText" type='text' placeholder='enter text'></textarea>
                     {errors.postText && <p>*Please enter the post body.</p>}
                 </div>
