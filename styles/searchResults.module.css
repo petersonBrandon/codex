@@ -1,0 +1,101 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.bodyContainer {
+    width: 70%;
+}
+
+.resultHeading {
+    margin-top: 20px;
+}
+
+.resultHeading h1 {
+    font-size: calc(1.25em + 1vw);
+    margin: 0;
+}
+
+.resultHeading h2 {
+    font-size: calc(0.5em + 0.5vw);
+    margin: 0;
+}
+
+.results {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.resultsWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.post {
+    box-shadow: 0px 0px 10px 1px #161212;
+    border-radius: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #8F8F8F;
+    color: white;
+    margin: 20px;
+    height: 13.5vw;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.post:hover {
+    background-color: #7A7A7A;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.postContent {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 70%;
+}
+
+.postTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px 10px 0px 0px;
+    margin: 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    height: 30%;
+    background-color: #3D3D3D;
+    font-size: calc(1em + 0.5vw);
+}
+
+.postText {
+    font-size: calc(0.4em + 0.5vw);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 90%;
+    margin-bottom: 0;
+    text-indent: 45px;
+}
+
+.postDate {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: right;
+    font-size: calc(0.2em + 0.5vw);
+    height: 10%;
+}

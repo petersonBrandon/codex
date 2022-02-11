@@ -19,6 +19,20 @@ const PageHeader = () => {
 
     let isLoggedIn = false;
 
+    const enterSearch = () => {
+        const search = document.getElementById("search").value;
+        if (event.keyCode == 13) {
+            window.location = `/dynamicRoutes/search/${search}`
+        }
+    }
+
+    const search = () => {
+        let search = document.getElementById("search").value;
+        if (search !== "") {
+            window.location = `/dynamicRoutes/search/${search}`
+        }
+    }
+
     return (
         <header className={styles.container}>
             <nav className={styles.normalNav}>
@@ -36,9 +50,9 @@ const PageHeader = () => {
                     </div>
                     <div className={styles.search}>
                         <div className={styles.searchBox}>
-                            <input type='text' />
+                            <input type='text' id='search'onKeyPress={enterSearch}/>
                         </div>
-                        <MdSearch className={styles.searchIcon}/>
+                        <MdSearch className={styles.searchIcon} onClick={search}/>
                     </div>
                     {isLoggedIn ? 
                         <div className={styles.link}>
