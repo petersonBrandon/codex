@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { AiOutlineUser, AiOutlineMail } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
+import axios from 'axios'
 
 import styles from '../../styles/createAccount.module.css';
 
 
 const CreateAccountForm = () => {
     const [passwordMatch, setPassMatch] = useState(true);
+    const [emailExists, setEmailExists] = useState(false);
     const {
         register,
         handleSubmit,
@@ -19,6 +20,20 @@ const CreateAccountForm = () => {
               setPassMatch(false);
           } else {
               setPassMatch(true);
+              axios.post('/api/createAccount', {
+                  firstName: data.firstName,
+                  lastName: data.lastName,
+                  email: data.email,
+                  password: data.password,
+              })
+              .then(res => {
+                  if(res.data === -1) {
+                      setEmailExists(true);
+                  } else {
+                      setEmailExists(false);
+                      window.location = '/login/Login';
+                  }
+              })
           }
       };
 
@@ -45,6 +60,9 @@ const CreateAccountForm = () => {
             <div className={styles.message}>
                 {errors.email && <p>*Invalid email.</p>}
             </div>
+            <div className={styles.message}>
+                <div className={!emailExists ? styles.mclosed : styles.mopen}>*Email already in use.</div>
+            </div>
             <div className={styles.inputField}>
                 <div className={styles.icon}>
                     <AiOutlineMail />
@@ -54,6 +72,9 @@ const CreateAccountForm = () => {
             <div className={styles.message}>
                 {errors.password && <p>*Password required.</p>}
             </div>
+            <div className={styles.message}>
+                <div className={passwordMatch ? styles.mclosed : styles.mopen}>*Passwords do not match</div>
+            </div>
             <div className={styles.inputField}>
                 <div className={styles.icon}>
                     <BiLockAlt />
@@ -61,7 +82,7 @@ const CreateAccountForm = () => {
                 <input {...register('password', {required: true})} type='password' placeholder='password'/>
             </div>
             <div className={styles.message}>
-                <div className={passwordMatch ? styles.mclosed : styles.mopen}>*Passwords do not match</div>
+                {errors.password2 && <p>*Re-enter password.</p>}
             </div>
             <div className={styles.inputField}>
                 <div className={styles.icon}>
