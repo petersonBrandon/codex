@@ -9,15 +9,21 @@ import { VscAdd } from 'react-icons/vsc';
 
 import codexLogo from '../public/images/Codex_Logo.png';
 
-const PageHeader = () => {
+export async function getServerSideProps() {
+    return {
+      props: {
+        isLoggedIn: "",
+      },
+    };
+  }
+
+const PageHeader = ({isLoggedIn}) => {
     const [isChecked, setChecked] = useState(false); 
 
     const handleCheck = () => {
         setChecked(!isChecked);
         console.log(isChecked);
     }
-
-    let isLoggedIn = false;
 
     const enterSearch = () => {
         const search = document.getElementById("search").value;
