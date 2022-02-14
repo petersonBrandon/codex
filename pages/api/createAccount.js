@@ -59,6 +59,7 @@ export default async function handler(req, res) {
 						return user.save();
 					})
 					.then(result => {
+						res.send(1);
 						console.log(result);
 						return transporter.sendMail({
 							to: email,
@@ -265,9 +266,9 @@ export default async function handler(req, res) {
 							</html>`
 					})
 				})
-				.then (() => {
-					res.send(1);
-				})
+				// .then (() => {
+				// 	res.send(1);
+				// })
 			}
 		});
 	}
