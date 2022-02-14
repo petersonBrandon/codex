@@ -9,7 +9,6 @@ import { BiLockAlt } from "react-icons/bi";
 import styles from '../../styles/Login.module.css';
 
 const LoginForm = () => {
-    const [userExists, setUserExists] = useState(true);
     const [correctCreds, setCorrectCreds] = useState(true);
     const {
         register,
@@ -22,14 +21,9 @@ const LoginForm = () => {
               password: data.password
           })
           .then(res => {
-              if (res.data === -1) {
-                    setUserExists(false);
-                    setCorrectCreds(true);
-              } else if(res.data === -2) {
+              if (res.data === -1 || res.data == -2) {
                     setCorrectCreds(false);
-                    setUserExists(true);
               } else {
-                    setUserExists(true);
                     setCorrectCreds(true);
                     window.location = '/';
               }
@@ -38,9 +32,6 @@ const LoginForm = () => {
 
     return (
         <form className={styles.loginForm} name="loginForm" onSubmit={handleSubmit(onSubmit)}>
-            <div className={styles.message}>
-                <div className={userExists ? styles.mclosed : styles.mopen}>*User does not exist.</div>
-            </div>
             <div className={styles.message}>
                 <div className={correctCreds ? styles.mclosed : styles.mopen}>*Email or password incorrect.</div>
             </div>
