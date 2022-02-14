@@ -18,6 +18,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    clearance: {
+        type: String,
+        required: true
+    },
     dateCreated: {
         type: String,
         required: true
