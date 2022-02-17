@@ -37,7 +37,13 @@ const userSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Post',
         }
-    } ]
+    } ],
+    resetToken: {
+        type: String
+    },
+    resetTokenExipration: {
+        type: Date
+    } 
 });
 
 mongoose.models = {};
