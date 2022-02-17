@@ -10,7 +10,7 @@ import { VscAdd } from 'react-icons/vsc';
 
 import codexLogo from '../public/images/Codex_Logo.png';
 
-const PageHeader = ({isLoggedIn}) => {
+const PageHeader = ({isLoggedIn, clearance}) => {
     console.log(isLoggedIn);
     const [isChecked, setChecked] = useState(false); 
 
@@ -61,7 +61,7 @@ const PageHeader = ({isLoggedIn}) => {
                         </div>
                         <MdSearch className={styles.searchIcon} onClick={search}/>
                     </div>
-                    {isLoggedIn ? 
+                    {isLoggedIn && clearance === '5' ? 
                         <div className={styles.link}>
                             <Link href="/createPost">
                                 <VscAdd className={styles.addIcon}/>

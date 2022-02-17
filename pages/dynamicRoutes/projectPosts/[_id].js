@@ -16,6 +16,7 @@ export const getServerSideProps = withIronSessionSsr (
 
         if(!req.session.isLoggedIn) {
             req.session.isLoggedIn = false;
+            req.session.clearance = 0;
             await req.session.save()
         }
 
@@ -36,7 +37,8 @@ export const getServerSideProps = withIronSessionSsr (
                 props: {
                     projectData,
                     postsData,
-                    isLoggedIn: req.session.isLoggedIn
+                    isLoggedIn: req.session.isLoggedIn,
+                    userClearance: req.session.clearance
                 }
             }
         } catch (error) {
@@ -54,7 +56,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const project = ({projectData, postsData, isLoggedIn}) => {
+const project = ({projectData, postsData, isLoggedIn, userClearance}) => {
     const project = JSON.parse(projectData);
     const posts = JSON.parse(postsData);
     return (
@@ -65,7 +67,7 @@ const project = ({projectData, postsData, isLoggedIn}) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader isLoggedIn={isLoggedIn} />
+            <PageHeader isLoggedIn={isLoggedIn} clearance={userClearance} />
             <main className={styles.main} >
                 <section className={styles.bodyContainer}>
                     <section className={styles.heading}>

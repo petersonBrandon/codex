@@ -10,12 +10,14 @@ export const getServerSideProps = withIronSessionSsr (
   async ({req}) => {
       if(!req.session.isLoggedIn) {
         req.session.isLoggedIn = false;
+        req.session.clearance = 0;
         await req.session.save()
       }
 
       return {
         props: {
-          isLoggedIn: req.session.isLoggedIn
+          isLoggedIn: req.session.isLoggedIn,
+          userClearance: req.session.clearance
         }
       }
   },
@@ -39,7 +41,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PageHeader isLoggedIn={props.isLoggedIn} />
+      <PageHeader isLoggedIn={props.isLoggedIn} clearance={props.userClearance} />
       <main className={styles.main}>
           <section className={styles.bodyContainer}>
             <section className={styles.big_hero_centered}>
