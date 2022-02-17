@@ -33,6 +33,13 @@ const PageHeader = ({isLoggedIn, clearance}) => {
         }
     }
 
+    const enterSearchMobile = () => {
+        const search = document.getElementById("search2").value;
+        if (event.keyCode == 13) {
+            window.location = `/dynamicRoutes/search/${search}`
+        }
+    }
+
     const search = () => {
         let search = document.getElementById("search").value;
         if (search !== "") {
@@ -57,7 +64,7 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                     </div>
                     <div className={styles.search}>
                         <div className={styles.searchBox}>
-                            <input type='text' id='search'onKeyPress={enterSearch}/>
+                            <input type='text' id='search' onKeyPress={enterSearch}/>
                         </div>
                         <MdSearch className={styles.searchIcon} onClick={search}/>
                     </div>
@@ -93,7 +100,7 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                 </div>
                 <div className={`${isChecked ? styles.dropOpen : styles.dropClosed}`}>
                     <div className={styles.searchBox}>
-                        <input type='text' placeholder='Search...'/>
+                        <input type='text' placeholder='Search...' id='search2' onKeyPress={enterSearchMobile}/>
                     </div>
                     <div className={styles.mItemsSection}>
                         <div className={styles.link}>
@@ -106,7 +113,7 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                             <Link href='/Projects'>Projects</Link>
                         </div>
                         <div className={styles.link}>
-                            <Link href="/login/Login">Login</Link>
+                            {isLoggedIn ? <div onClick={handleLogout}>Logout</div> : <Link href="/login/Login">Login</Link>}
                         </div>
                     </div>
                 </div>
