@@ -8,24 +8,46 @@ import dbConnect from '../lib/connectDB';
 import Project from'../models/project';
 import CreatePost from '../React-Components/CreatePost';
 
-export async function getServerSideProps() {
- 
-    await dbConnect();
+import { withIronSessionSsr } from 'iron-session/next'
 
-    try {
-        let projectsData = await Project.find({});
-        projectsData = JSON.stringify(projectsData);
-        return {
-            props: {projectsData}
-        }
-    } catch (error) {
-        return {
-            props: {}
-        }
-    }
-}
+export const getServerSideProps = withIronSessionSsr (
+    async ({req, res}) => {
+        await dbConnect();
 
-const createPost = ({projectsData}) => {
+        if(!req.session.isLoggedIn) {
+            res.setHeader('location', '/login/Login');
+            res.statusCode = 302
+            res.end()
+            return {
+                props: {isLoggedIn: req.session.isLoggedIn}
+            }
+        }
+
+        try {
+            let projectsData = await Project.find({});
+            projectsData = JSON.stringify(projectsData);
+            return {
+                props: {
+                    projectsData,
+                    isLoggedIn: req.session.isLoggedIn
+                }
+            }
+        } catch (error) {
+            return {
+                props: {}
+            }
+        }
+    },
+    {
+        cookieName: "CODEXAPPCOOKIE",
+        cookieOptions : {
+            secure: process.env.NODE_ENV === "production" 
+        },
+        password: process.env.SESSION_PASS
+    }   
+)
+
+const createPost = ({projectsData, isLoggedIn}) => {
     let projects = null;
     if (projectsData) {
         projects = JSON.parse(projectsData);
@@ -39,7 +61,7 @@ const createPost = ({projectsData}) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader />
+            <PageHeader isLoggedIn={isLoggedIn} />
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <h1>Create Post.</h1>

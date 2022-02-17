@@ -3,7 +3,6 @@ import User from '../../models/user';
 import bcrypt from 'bcryptjs';
 
 import { withIronSessionApiRoute } from 'iron-session/next'
-import { resolveContent } from 'nodemailer/lib/shared';
 
 export default withIronSessionApiRoute ( 
     async (req, res) => { 

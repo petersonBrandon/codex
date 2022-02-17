@@ -6,25 +6,42 @@ import PageFooter from '../React-Components/PageFooter';
 
 import dbConnect from '../lib/connectDB';
 import Project from'../models/project';
+import { withIronSessionSsr } from 'iron-session/next'
 
-export async function getServerSideProps() {
- 
-    await dbConnect();
+export const getServerSideProps = withIronSessionSsr (
+    async ({req}) => {
+        await dbConnect();
 
-    try {
-        let projectsData = await Project.find({}).sort({_id: -1});
-        projectsData = JSON.stringify(projectsData);
-        return {
-            props: {projectsData}
+        if(!req.session.isLoggedIn) {
+            req.session.isLoggedIn = false;
+            await req.session.save()
         }
-    } catch (error) {
-        return {
-            props: {}
-        }
-    }
-}
 
-const Projects = ({ projectsData }) => {
+        try {
+            let projectsData = await Project.find({}).sort({_id: -1});
+            projectsData = JSON.stringify(projectsData);
+            return {
+                props: {
+                    projectsData,
+                    isLoggedIn: req.session.isLoggedIn
+                }
+            }
+        } catch (error) {
+            return {
+                props: {}
+            }
+        }
+    },
+    {
+        cookieName: "CODEXAPPCOOKIE",
+        cookieOptions : {
+            secure: process.env.NODE_ENV === "production" 
+        },
+        password: process.env.SESSION_PASS
+    }   
+)
+
+const Projects = ({ projectsData, isLoggedIn }) => {
     let projects = null;
     if (projectsData) {
         projects = JSON.parse(projectsData);
@@ -39,7 +56,7 @@ const Projects = ({ projectsData }) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <PageHeader />
+            <PageHeader isLoggedIn={isLoggedIn} />
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <section className={styles.big_hero_centered}>

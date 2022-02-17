@@ -5,27 +5,45 @@ import PageHeader from '../React-Components/PageHeader';
 import dbConnect from '../lib/connectDB';
 import Post from '../models/post';
 
+import { withIronSessionSsr } from 'iron-session/next'
+
 import styles from '../styles/New.module.css';
 
-export async function getServerSideProps() {
- 
-    await dbConnect();
+export const getServerSideProps = withIronSessionSsr (
+    async ({req}) => {
+        await dbConnect();
 
-    try {
-        let postsData = await Post.find({}).sort({_id: -1});
-
-        postsData = JSON.stringify(postsData);
-        return {
-            props: {postsData}
+        if(!req.session.isLoggedIn) {
+            req.session.isLoggedIn = false;
+            await req.session.save()
         }
-    } catch (error) {
-        return {
-            props: {}
-        }
-    }
-}
 
-const New = ({ postsData }) => {
+        try {
+            let postsData = await Post.find({}).sort({_id: -1});
+
+            postsData = JSON.stringify(postsData);
+            return {
+                props: {
+                    postsData, 
+                    isLoggedIn: req.session.isLoggedIn
+                }
+            }
+        } catch (error) {
+            return {
+                props: {}
+            }
+        }
+    },
+    {
+        cookieName: "CODEXAPPCOOKIE",
+        cookieOptions : {
+            secure: process.env.NODE_ENV === "production" 
+        },
+        password: process.env.SESSION_PASS
+    }   
+)
+
+const New = ({ postsData, isLoggedIn }) => {
     const posts = JSON.parse(postsData);
     return (
         <div className={styles.container}>
@@ -35,7 +53,7 @@ const New = ({ postsData }) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader />
+            <PageHeader isLoggedIn={isLoggedIn}/>
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     {posts.map((post) => (

@@ -8,6 +8,11 @@ import { withIronSessionSsr } from 'iron-session/next'
 
 export const getServerSideProps = withIronSessionSsr (
   async ({req}) => {
+      if(!req.session.isLoggedIn) {
+        req.session.isLoggedIn = false;
+        await req.session.save()
+      }
+
       return {
         props: {
           isLoggedIn: req.session.isLoggedIn

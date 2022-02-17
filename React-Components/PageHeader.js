@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import axios from 'axios'
 
 import styles from '../styles/PageHeader.module.css'
 
@@ -16,6 +17,13 @@ const PageHeader = ({isLoggedIn}) => {
     const handleCheck = () => {
         setChecked(!isChecked);
         console.log(isChecked);
+    }
+
+    const handleLogout = () => {
+        axios.get('/api/logout')
+            .then(res => {
+                window.location = "/login/Login"
+            });
     }
 
     const enterSearch = () => {
@@ -62,7 +70,7 @@ const PageHeader = ({isLoggedIn}) => {
                         : <meta/>
                     }
                     <div className={styles.link}>
-                        {isLoggedIn ? <Link href="/login/Login">Logout</Link> : <Link href="/login/Login">Login</Link>}
+                        {isLoggedIn ? <div onClick={handleLogout}>Logout</div> : <Link href="/login/Login">Login</Link>}
                     </div>
                 </div>
             </nav>
