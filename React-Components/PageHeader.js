@@ -82,6 +82,14 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                 </div>
             </nav>
             <nav className={styles.mobileNav}>
+                {isLoggedIn && clearance === '5' ? 
+                    <div className={styles.mobilePlus}>
+                        <Link href="/createPost">
+                            <VscAdd className={styles.addIcon}/>
+                        </Link>
+                    </div>
+                    : <meta/>
+                }
                 <div className={styles.mobileHeader}>
                     <Link href="/">
                         <div className={styles.logo}>
