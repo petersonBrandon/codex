@@ -4,38 +4,57 @@ import Post from '../../../models/post';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { withIronSessionSsr } from 'iron-session/next'
+
 import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
 import styles from '../../../styles/ProjectInfo.module.css';
 
-export async function getServerSideProps({ params }) {
- 
-    await dbConnect();
+export const getServerSideProps = withIronSessionSsr (
+    async ({params, req}) => {
+        await dbConnect();
 
-    try {
-        let projectData = await Project.findById(params._id);
+        if(!req.session.isLoggedIn) {
+            req.session.isLoggedIn = false;
+            await req.session.save()
+        }
 
-        console.log(projectData);
-        let postsData = [];
-        for( let post of projectData.posts ) {
-            postsData.push(await Post.findById(post.postId));
-        }
-        postsData.sort((a, b) => {
-            return new Date(b.dateCreated) - new Date(a.dateCreated);
-        })
-        projectData = JSON.stringify(projectData);
-        postsData = JSON.stringify(postsData);
-        return {
-            props: {projectData, postsData}
-        }
-    } catch (error) {
-        return {
-            props: {}
-        }
-    }
-}
+        try {
+            let projectData = await Project.findById(params._id);
 
-const project = ({projectData, postsData}) => {
+            console.log(projectData);
+            let postsData = [];
+            for( let post of projectData.posts ) {
+                postsData.push(await Post.findById(post.postId));
+            }
+            postsData.sort((a, b) => {
+                return new Date(b.dateCreated) - new Date(a.dateCreated);
+            })
+            projectData = JSON.stringify(projectData);
+            postsData = JSON.stringify(postsData);
+            return {
+                props: {
+                    projectData,
+                    postsData,
+                    isLoggedIn: req.session.isLoggedIn
+                }
+            }
+        } catch (error) {
+            return {
+                props: {}
+            }
+        }
+    },
+    {
+        cookieName: "CODEXAPPCOOKIE",
+        cookieOptions : {
+            secure: process.env.NODE_ENV === "production" 
+        },
+        password: process.env.SESSION_PASS
+    }   
+)
+
+const project = ({projectData, postsData, isLoggedIn}) => {
     const project = JSON.parse(projectData);
     const posts = JSON.parse(postsData);
     return (
@@ -46,7 +65,7 @@ const project = ({projectData, postsData}) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader />
+            <PageHeader isLoggedIn={isLoggedIn} />
             <main className={styles.main} >
                 <section className={styles.bodyContainer}>
                     <section className={styles.heading}>

@@ -2,28 +2,46 @@ import dbConnect from '../../../lib/connectDB';
 import Post from '../../../models/post';
 import Head from 'next/head';
 
+import { withIronSessionSsr } from 'iron-session/next'
+
 import styles from '../../../styles/Post.module.css';
 import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
 
-export async function getServerSideProps({ params }) {
- 
-    await dbConnect();
+export const getServerSideProps = withIronSessionSsr (
+    async ({params, req}) => {
+        await dbConnect();
 
-    try {
-        let postData = await Post.findById(params._id)
-        postData = JSON.stringify(postData);
-        return {
-            props: {postData}
+        if(!req.session.isLoggedIn) {
+            req.session.isLoggedIn = false;
+            await req.session.save()
         }
-    } catch (error) {
-        return {
-            props: {}
-        }
-    }
-}
 
-const post = ({postData}) => {
+        try {
+            let postData = await Post.findById(params._id)
+            postData = JSON.stringify(postData);
+            return {
+                props: {
+                    postData,
+                    isLoggedIn: req.session.isLoggedIn
+                }
+            }
+        } catch (error) {
+            return {
+                props: {}
+            }
+        }
+    },
+    {
+        cookieName: "CODEXAPPCOOKIE",
+        cookieOptions : {
+            secure: process.env.NODE_ENV === "production" 
+        },
+        password: process.env.SESSION_PASS
+    }   
+)
+
+const post = ({postData, isLoggedIn}) => {
     const post = JSON.parse(postData);
     return (
         <div className={styles.container}>
@@ -33,7 +51,7 @@ const post = ({postData}) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader />
+            <PageHeader isLoggedIn={isLoggedIn} />
             <main className={styles.main} >
                 <section className={styles.bodyContainer}>
                     <div className={styles.heading}>

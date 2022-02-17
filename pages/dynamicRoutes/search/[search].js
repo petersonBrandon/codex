@@ -4,62 +4,79 @@ import Post from '../../../models/post';
 import Head from 'next/head';
 import Link from 'next/link'
 
+import { withIronSessionSsr } from 'iron-session/next'
 
 import styles from '../../../styles/searchResults.module.css'
 import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
 
-export async function getServerSideProps({ params }) {
+export const getServerSideProps = withIronSessionSsr (
+    async ({params, req}) => {
+        await dbConnect();
 
-    await dbConnect();
+        if(!req.session.isLoggedIn) {
+            req.session.isLoggedIn = false;
+            await req.session.save()
+        }
 
-    try {
-        let words = [];
-        let tmpStr = "";
-        for (let i of params.search) {
-            if(i === " ") {
-                words.push(tmpStr);
-                tmpStr = "";
-            } else {
-                tmpStr += i.toLowerCase();
+        try {
+            let words = [];
+            let tmpStr = "";
+            for (let i of params.search) {
+                if(i === " ") {
+                    words.push(tmpStr);
+                    tmpStr = "";
+                } else {
+                    tmpStr += i.toLowerCase();
+                }
+            }
+            words.push(tmpStr);
+            tmpStr = "";
+
+            console.log(words);
+
+            let searchResults = await Post.find({});
+            searchResults = searchResults.filter(post => {
+                const tmpTitle = post.title.toLowerCase();
+                if (tmpTitle === params.search.toLowerCase()) {
+                    return true;
+                } else {
+                    for(let word of words) {
+                        if ( tmpTitle.search(word) !== -1 ) {
+                            return true;
+                        }
+                    }        
+                }
+            })
+            
+            console.log(searchResults);
+            searchResults.sort((a, b) => {
+                return new Date(b.dateCreated) - new Date(a.dateCreated);
+            })
+            searchResults = JSON.stringify(searchResults);
+            
+            return {
+                props: { 
+                    searchResults,
+                    isLoggedIn: req.session.isLoggedIn
+                }
+            }
+        } catch (error) {
+            return {
+                props: {}
             }
         }
-        words.push(tmpStr);
-        tmpStr = "";
+    },
+    {
+        cookieName: "CODEXAPPCOOKIE",
+        cookieOptions : {
+            secure: process.env.NODE_ENV === "production" 
+        },
+        password: process.env.SESSION_PASS
+    }   
+)
 
-        console.log(words);
-
-        let searchResults = await Post.find({});
-        searchResults = searchResults.filter(post => {
-            const tmpTitle = post.title.toLowerCase();
-            if (tmpTitle === params.search.toLowerCase()) {
-                return true;
-            } else {
-                for(let word of words) {
-                    if ( tmpTitle.search(word) !== -1 ) {
-                        return true;
-                    }
-                }        
-            }
-        })
-        
-        console.log(searchResults);
-        searchResults.sort((a, b) => {
-            return new Date(b.dateCreated) - new Date(a.dateCreated);
-        })
-        searchResults = JSON.stringify(searchResults);
-        
-        return {
-            props: { searchResults }
-        }
-    } catch (error) {
-        return {
-            props: {}
-        }
-    }
-}
-
-const searchResults = ({searchResults}) => {
+const searchResults = ({searchResults, isLoggedIn}) => {
     let results = null;
     if (searchResults !== null) {
         results = JSON.parse(searchResults);
@@ -72,7 +89,7 @@ const searchResults = ({searchResults}) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader />
+            <PageHeader isLoggedIn={isLoggedIn} />
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <section className={styles.resultHeading}>
