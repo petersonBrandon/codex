@@ -14,37 +14,26 @@ export default withIronSessionApiRoute (
         
             const email = req.body.email;
             const password = req.body.password;
-
-            let isVerified = false;
         
             await User.findOne({email: email})
                 .then(user => {
                     if(!user) {
-                        return isVerified = false;                       
+                        res.send(-1);                    
                     } else {
                         bcrypt
                             .compare(password, user.pass)
-                            .then(match => {
+                            .then(async match => {
                                 if (match) {
-                                    console.log("Verified");
-                                    return isVerified = true;                                   
-                                } 
-                            })
-                            .then(
-                                async response => {
-                                    if (isVerified) {
-                                        console.log("Verified 2")
-                                        req.session.userEmail = email;
-                                        req.session.userName = `${user.f_name} ${user.l_name}`;
-                                        req.session.isLoggedIn = true;
-                                        await req.session.save();
-                                        res.send(1)
-                                    } else {
-                                        console.log("Unauthenticated")
-                                        res.send(-1);
-                                    }
+                                    req.session.userEmail = email;
+                                    req.session.userName = `${user.f_name} ${user.l_name}`;
+                                    req.session.isLoggedIn = true;
+                                    req.session.clearance = user.clearance;
+                                    await req.session.save();
+                                    res.send(1)                                   
+                                } else {
+                                    res.send(-1);
                                 }
-                            )
+                            })
                             .catch(err => {
                                 console.log(err);
                             })

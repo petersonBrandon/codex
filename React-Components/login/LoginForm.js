@@ -21,7 +21,7 @@ const LoginForm = () => {
               password: data.password
           })
           .then(res => {
-              if (res.statusCode === -1) {
+              if (res.data === -1) {
                     setCorrectCreds(false);
               } else {
                     setCorrectCreds(true);
