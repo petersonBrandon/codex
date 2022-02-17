@@ -9,15 +9,8 @@ import { VscAdd } from 'react-icons/vsc';
 
 import codexLogo from '../public/images/Codex_Logo.png';
 
-export async function getServerSideProps() {
-    return {
-      props: {
-        isLoggedIn: "",
-      },
-    };
-  }
-
 const PageHeader = ({isLoggedIn}) => {
+    console.log(isLoggedIn);
     const [isChecked, setChecked] = useState(false); 
 
     const handleCheck = () => {
@@ -113,5 +106,7 @@ const PageHeader = ({isLoggedIn}) => {
         </header>
     );
 };
+
+
 
 export default PageHeader;

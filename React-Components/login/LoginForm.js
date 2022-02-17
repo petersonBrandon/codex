@@ -21,12 +21,13 @@ const LoginForm = () => {
               password: data.password
           })
           .then(res => {
-              if (res.data === -1 || res.data == -2) {
+              if (res.statusCode === -1) {
                     setCorrectCreds(false);
               } else {
                     setCorrectCreds(true);
                     window.location = '/';
               }
+            console.log(res);
           })
       };
 

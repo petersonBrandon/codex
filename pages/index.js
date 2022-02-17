@@ -4,7 +4,27 @@ import styles from '../styles/Home.module.css'
 import PageHeader from '../React-Components/PageHeader';
 import PageFooter from '../React-Components/PageFooter';
 
+import { withIronSessionSsr } from 'iron-session/next'
+
+export const getServerSideProps = withIronSessionSsr (
+  async ({req}) => {
+      return {
+        props: {
+          isLoggedIn: req.session.isLoggedIn
+        }
+      }
+  },
+  {
+      cookieName: "CODEXAPPCOOKIE",
+      cookieOptions : {
+          secure: process.env.NODE_ENV === "production" 
+      },
+      password: process.env.SESSION_PASS
+  }   
+)
+
 export default function Home(props) {
+  console.log(props);
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +34,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PageHeader />
+      <PageHeader isLoggedIn={props.isLoggedIn} />
       <main className={styles.main}>
           <section className={styles.bodyContainer}>
             <section className={styles.big_hero_centered}>
@@ -38,11 +58,4 @@ export default function Home(props) {
       <PageFooter />
     </div>
   )
-}
-
-export async function getStaticProps() {
-  const data = null;
-  return {
-    props: {data}
-  }
 }
