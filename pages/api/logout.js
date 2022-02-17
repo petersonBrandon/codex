@@ -1,7 +1,3 @@
-import dbConnect from '../../lib/connectDB';
-import User from '../../models/user';
-import bcrypt from 'bcryptjs';
-
 import { withIronSessionApiRoute } from 'iron-session/next'
 
 export default withIronSessionApiRoute ( 
