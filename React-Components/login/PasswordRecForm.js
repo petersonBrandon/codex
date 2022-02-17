@@ -1,4 +1,4 @@
-import React from 'react';
+import axios from 'axios'
 import { useForm } from 'react-hook-form';
 
 import { AiOutlineUser } from "react-icons/ai";
@@ -10,10 +10,18 @@ const PasswordRecForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-      } = useForm();
-      const onSubmit = (data) => {
-          console.log(data);
-      };
+        } = useForm();
+    
+        const onSubmit = (data) => {
+        axios.post('/api/passwordRecover', {
+            email: data.email,
+        })
+        .then(res => {
+            if (res.data !== -1) {
+                window.location = "/login/recoveryEmailSent"
+            }
+        })
+    };
 
     return (
         <form className={styles.loginForm} onSubmit={handleSubmit(onSubmit)}>

@@ -41,7 +41,7 @@ const userSchema = new Schema({
     resetToken: {
         type: String
     },
-    resetTokenExipration: {
+    resetTokenExpiration: {
         type: Date
     } 
 });
