@@ -54,7 +54,9 @@ export default async function handler(req, res) {
 							email: email,
 							pass: hashedPassword,
 							dateCreated: currentDate,
-							clearance: clearance
+							clearance: clearance,
+							resetToken: "",
+							resetTokenExpiration: ""
 						});
 						return user.save();
 					})
