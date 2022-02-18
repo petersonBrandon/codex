@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "export": "next export",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "axios": "^0.25.0",
     "bcryptjs": "^2.4.3",
     "express": "^4.17.3",
+    "heroku-ssl-redirect": "^0.1.1",
     "iron-session": "^6.0.5",
     "mongoose": "^6.1.10",
     "next": "^12.1.0",
