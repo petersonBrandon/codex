@@ -132,23 +132,6 @@
     background-color: #F5F5F5;
 }
 
-.forgotPassword {
-    text-align: right;
-    font-size: calc(0.1em + 0.5vw);
-    cursor: pointer;
-    color: #004aad;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.forgotPassword:hover {
-    color: #0A74FF;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
 .formButton {
     background-color: #4c9f70;
     border: none;
@@ -171,36 +154,9 @@
     transition-duration: 0.5s;
 }
 
-.createAccount {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: calc(0.1em + 0.5vw);
-}
-
-.createAccount p {
-    margin-right: 5px;
-}
-
-.createAccount a {
-    color: #004aad;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.createAccount a:hover {
-    color: #0A74FF;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
 @media only screen and (max-width: 1100px) {
     .main {
-        height: 200vw;
+        height: 175vw;
     }
 
     .bodyContainer {
@@ -211,6 +167,10 @@
     .bodyContainer h1 {
         font-size: calc(3em + 1vw);
         text-align: center;
+    }
+
+    .error a{
+        font-size: calc(1.5em + 1vw);
     }
 
     .message {
@@ -234,7 +194,7 @@
     }
 
     .formButton {
-        font-size: calc(1.3em + 1vw);
+        font-size: calc(1em + 1vw);
     }
 
     .createAccount {
