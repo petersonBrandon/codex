@@ -160,13 +160,17 @@
     }
 
     .bodyContainer {
-        width: 80%;
+        width: 90%;
         justify-content: center;
     }
 
     .bodyContainer h1 {
         font-size: calc(3em + 1vw);
         text-align: center;
+    }
+    
+    .passwordResetContainer {
+        width: 100%;
     }
 
     .error a{
@@ -189,15 +193,7 @@
         font-size: calc(2em + 1vw);
     }
 
-    .forgotPassword {
-        font-size: calc(1em + 1vw);
-    }
-
     .formButton {
-        font-size: calc(1em + 1vw);
-    }
-
-    .createAccount {
         font-size: calc(1em + 1vw);
     }
 }
