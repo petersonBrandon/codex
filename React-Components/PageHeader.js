@@ -4,11 +4,12 @@ import axios from 'axios'
 
 import styles from '../styles/PageHeader.module.css'
 
-import { MdSearch } from "react-icons/md";
 import { useState } from 'react';
+import { MdSearch } from "react-icons/md";
 import { VscAdd } from 'react-icons/vsc';
 
 import codexLogo from '../public/images/Codex_Logo.png';
+import ProfileIcon from './profile/ProfileIcon';
 
 const PageHeader = ({isLoggedIn, clearance}) => {
     console.log(isLoggedIn);
@@ -77,7 +78,7 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                         : <meta/>
                     }
                     <div className={styles.link}>
-                        {isLoggedIn ? <div onClick={handleLogout}>Logout</div> : <Link href="/login/Login">Login</Link>}
+                        {isLoggedIn ? <ProfileIcon onClick={handleLogout} /> : <Link href="/login/Login">Login</Link> }
                     </div>
                 </div>
             </nav>
@@ -119,6 +120,9 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                         </div>
                         <div className={styles.link}>
                             <Link href='/Projects'>Projects</Link>
+                        </div>
+                        <div className={styles.link}>
+                            {isLoggedIn ? <Link href="/profile/profile">Profile</Link> : <meta />}
                         </div>
                         <div className={styles.link}>
                             {isLoggedIn ? <div onClick={handleLogout}>Logout</div> : <Link href="/login/Login">Login</Link>}

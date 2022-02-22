@@ -1,0 +1,60 @@
+.userIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #004AAD;
+    color: white;
+    width: 50px;
+    height: 100%;
+    padding: 3px;
+    border-radius: 100%;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.userIcon:hover {
+    background-color: #0A74FF;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropOpen {
+    display: block;
+    position: absolute;
+    top: 10vh;
+    background-color: #0D0A0B;
+    color: white;
+    padding: 20px;
+    padding-top: 0px;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.dropClosed {
+    display: none;
+}
+
+.dropItem {
+    margin: 10px;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.dropItem:hover {
+    color: #0A74FF;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
