@@ -9,7 +9,7 @@ import { MdSearch } from "react-icons/md";
 import { VscAdd } from 'react-icons/vsc';
 
 import codexLogo from '../public/images/Codex_Logo.png';
-import ProfileIcon from './profile/ProfileIcon';
+import ProfileDropdown from './profile/ProfileDropdown';
 
 const PageHeader = ({isLoggedIn, clearance}) => {
     console.log(isLoggedIn);
@@ -78,7 +78,7 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                         : <meta/>
                     }
                     <div className={styles.link}>
-                        {isLoggedIn ? <ProfileIcon onClick={handleLogout} /> : <Link href="/login/Login">Login</Link> }
+                        {isLoggedIn ? <ProfileDropdown onClick={handleLogout} /> : <Link href="/login/Login">Login</Link> }
                     </div>
                 </div>
             </nav>

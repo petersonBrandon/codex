@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {useState, useEffect} from 'react'
 import { AiOutlineUser } from "react-icons/ai";
 
-import styles from '../../styles/profile/profileIcon.module.css'
+import styles from '../../styles/profile/profileDropdown.module.css'
 
 const ProfileIcon = (props) => {
     const [isDropped, setDropped] = useState(false);
@@ -22,7 +22,7 @@ const ProfileIcon = (props) => {
             <AiOutlineUser className={styles.userIcon} onClick={toggle}/>
             <div className={isDropped ? styles.dropOpen : styles.dropClosed}>
                 <div className={styles.dropItem}>
-                    <Link href="/profile/profile" >Profile</Link>
+                    <Link href="/profile" >Profile</Link>
                 </div>
                 <div className={styles.dropItem}>
                     <div onClick={props.onClick} >Logout</div>
