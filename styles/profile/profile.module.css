@@ -1,0 +1,25 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    width: 70%;
+    height: 100%;
+    font-size: calc(0.5em + 1vw);
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.sideNav {
+    background-color: black;
+    color: white;
+    position: absolute;
+    height: 80vh;
+}
