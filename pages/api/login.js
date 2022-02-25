@@ -24,12 +24,14 @@ export default withIronSessionApiRoute (
                             .compare(password, user.pass)
                             .then(async match => {
                                 if (match) {
+                                    req.session.userId = user._id.toString();
                                     req.session.userEmail = email;
                                     req.session.userName = `${user.f_name} ${user.l_name}`;
                                     req.session.isLoggedIn = true;
                                     req.session.clearance = user.clearance;
                                     await req.session.save();
-                                    res.send(1)                                   
+                                    res.send(1)   
+                                    console.log(req.session);                                
                                 } else {
                                     res.send(-1);
                                 }
