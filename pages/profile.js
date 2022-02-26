@@ -71,7 +71,7 @@ const profile = ({projectsData, isLoggedIn, userClearance}) => {
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <PageHeader isLoggedIn={isLoggedIn} />
+            <PageHeader isLoggedIn={isLoggedIn} clearance={userClearance}/>
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <ProfilePage projectData={projects} clearance={userClearance} />
