@@ -25,26 +25,25 @@ export const getServerSideProps = withIronSessionSsr (
         }
 
         try {
-            const user = await User.findById(req.session.userId)
+            // const user = await User.findById(req.session.userId)
 
-            let projectsData = [];
-            for ( let project of user.projects ) {
-                projectsData.push(await Project.findById(project._id));
-            }
+            // let projectsData = [];
+            // for ( let project of user.projects ) {
+            //     projectsData.push(await Project.findById(project._id));
+            // }
 
-            projectsData = JSON.stringify(projectData);
+            // projectsData = JSON.stringify(projectData);
             return {
                 props: {
-                    projectsData,
+                    // projectsData,
                     isLoggedIn: req.session.isLoggedIn,
-                    userClearance: req.session.clearance
+                    userClearance: req.session.clearance,
+                    user: req.session
                 }
             }
         } catch (error) {
             return {
-                props: {
-                    isLoggedIn: req.session.isLoggedIn
-                }
+                props: {}
             }
         }
     },
@@ -57,7 +56,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const profile = ({projectsData, isLoggedIn, userClearance}) => {
+const profile = ({projectsData, isLoggedIn, userClearance, user}) => {
     const projects = null;
     if (projectsData) {
         projects = JSON.parse(projectsData);
@@ -74,7 +73,7 @@ const profile = ({projectsData, isLoggedIn, userClearance}) => {
             <PageHeader isLoggedIn={isLoggedIn} clearance={userClearance}/>
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
-                    <ProfilePage projectData={projects} clearance={userClearance} />
+                    <ProfilePage projectData={projects} clearance={userClearance} user={user}/>
                 </section>
             </main>
             <PageFooter />
