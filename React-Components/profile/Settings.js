@@ -7,11 +7,14 @@ const Settings = ({user}) => {
                 {user.userName}
             </h1>
             <div className={styles.profileBody}>
-                Email: {user.userEmail}
+                <div className={styles.section_title}>Email:</div>
+                <div>{user.userEmail}</div>
             </div>
-            <button className={styles.deleteAccBtn}>
-                Delete Account
-            </button>
+            <div>
+                <button className={styles.deleteAccBtn}>
+                    Delete Account
+                </button>
+            </div>
         </div>
     )
 }
