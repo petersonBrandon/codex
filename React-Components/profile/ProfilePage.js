@@ -4,21 +4,22 @@ import Settings from './Settings';
 import {useState} from 'react'
 
 const ProfilePage = (props) => {
-    const PROFILE = "profile";
+    const SETTINGS = "settings";
     const PROJECTS = "projects";
-    const [window, setWindow] = useState(PROFILE);
+    const [window, setWindow] = useState(PROJECTS);
+    const [focus, setFocus] = useState(PROJECTS);
 
     return (
         <div className={styles.profileContainer}>
-            <section className={styles.sideNav}>
+            <section className={styles.nav}>
                 <div className={styles.navBtn_container}>
-                    <div className={styles.navBtn} onClick={() => setWindow(PROFILE)}>Profile</div>
-                    <div className={styles.navBtn} onClick={() => setWindow(PROJECTS)}>Projects</div>
+                    <div className={styles.navBtn} id={focus === PROJECTS ? styles.focused : null} onClick={() => {setWindow(PROJECTS); setFocus(PROJECTS)}}>Projects</div>
+                    <div className={styles.navBtn} id={focus === SETTINGS ? styles.focused : null} onClick={() => {setWindow(SETTINGS); setFocus(SETTINGS)}}>Settings</div>
                 </div>
             </section>
 
             <section className={styles.content}>
-                {window === PROFILE ? <Settings user={props.user} /> : <meta />}
+                {window === SETTINGS ? <Settings user={props.user} /> : <meta />}
                 {window === PROJECTS ? <Projects /> : <meta />}
             </section>
         </div>

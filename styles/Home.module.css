@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   height: 30vw;
-  background-color: #161212;
+  background-color: #1f2833;
   margin-top: 20px;
   box-shadow: 0px 0px 10px 1px #161212;
   color: white;
@@ -51,7 +51,9 @@
   width: 300px;
   height: 60%;
   margin: 30px;
-  box-shadow: 0px 0px 10px 1px #161212;
+  box-shadow: 0px 0px 10px 1px #45a29e;
+  background-color: #1f2833;
+  color: white;
   border-radius: 15px;
   text-align: center;
 }
@@ -70,21 +72,16 @@
 .linkCard a {
   color: white;
   margin-bottom: 30px;
-  background-color: #4c9f70;
+  background-color: #45a29e;
   padding: 10px;
   width: 50%;
   border-radius: 10px;
   font-size: calc(0.2em + 1vw);
-
-  transition-timing-function: ease;
-  transition-duration: 0.5s;
 }
 
 .linkCard a:hover {
-  background-color: #75BD94;
-
-  transition-timing-function: ease;
-  transition-duration: 0.5s;
+  border: solid 3px #66fcf1;
+  margin-bottom: 30px;
 }
 
 @media only screen and (max-width: 1100px) {
