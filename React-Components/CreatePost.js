@@ -5,7 +5,7 @@ import Select from 'react-select'
 
 import styles from '../styles/createPost.module.css';
 
-const CreatePost = ({projects}) => {
+const CreatePost = ({projects, user}) => {
     const [createProject, setCreateProject] = useState(false);
     const [projectId, setProjId] = useState();
     const toggleCreateProject = () => {
@@ -23,6 +23,7 @@ const CreatePost = ({projects}) => {
         setProjId(data.projectSelect.value);
         if(!createProject) {
             axios.post('/api/create', {
+                userEmail: user.userEmail,
                 postTitle: data.postTitle,
                 projectId: data.projectSelect.value,
                 postText: data.postText,
@@ -33,6 +34,7 @@ const CreatePost = ({projects}) => {
             });
         } else {
             axios.post('/api/create', {
+                userEmail: user.userEmail,
                 projectTitle: data.projectTitle,
                 projectDesc: data.projectDesc,
                 postTitle: data.postTitle,

@@ -29,7 +29,8 @@ export const getServerSideProps = withIronSessionSsr (
             return {
                 props: {
                     projectsData,
-                    isLoggedIn: req.session.isLoggedIn
+                    isLoggedIn: req.session.isLoggedIn,
+                    user: req.session
                 }
             }
         } catch (error) {
@@ -47,7 +48,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const createPost = ({projectsData, isLoggedIn}) => {
+const createPost = ({projectsData, isLoggedIn, user}) => {
     let projects = null;
     if (projectsData) {
         projects = JSON.parse(projectsData);
@@ -65,7 +66,7 @@ const createPost = ({projectsData, isLoggedIn}) => {
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
                     <h1>Create Post.</h1>
-                    <CreatePost projects={projects} />
+                    <CreatePost projects={projects} user={user}/>
                 </section>
             </main>
             <PageFooter />

@@ -1,6 +1,7 @@
 import dbConnect from '../../lib/connectDB';
 import Project from'../../models/project';
-import Post from '../../models/post'
+import Post from '../../models/post';
+import User from '../../models/user';
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
@@ -17,6 +18,8 @@ export default async function handler(req, res) {
 
         const postTitle = req.body.postTitle;
         const postText = req.body.postText;
+
+        const userEmail = req.body.userEmail;
 
         let postExcerpt = "";
 
@@ -62,6 +65,9 @@ export default async function handler(req, res) {
 
             await post.save();
             await newProject.save();
+            const user = await User.findOne({email: userEmail});
+            user.projects.push(newProject._id);
+            await user.save();
         } else {
             const updateProj = await Project.findById(projectId);
             const post = new Post({
