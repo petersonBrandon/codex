@@ -20,7 +20,7 @@ const ProfilePage = (props) => {
 
             <section className={styles.content}>
                 {window === SETTINGS ? <Settings user={props.user} /> : <meta />}
-                {window === PROJECTS ? <Projects /> : <meta />}
+                {window === PROJECTS ? <Projects projects = {props.projects}/> : <meta />}
             </section>
         </div>
     )

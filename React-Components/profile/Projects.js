@@ -1,7 +1,7 @@
 import styles from '../../styles/profile/profile.module.css';
 import { VscAdd } from 'react-icons/vsc';
 
-const Projects = () => {
+const Projects = ({projects}) => {
     return (
         <div className={styles.projects_container}>
             <div className={styles.project_header}>
