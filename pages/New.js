@@ -58,17 +58,20 @@ const New = ({ postsData, isLoggedIn, userClearance }) => {
             <PageHeader isLoggedIn={isLoggedIn} clearance={userClearance} />
             <main className={styles.main}>
                 <section className={styles.bodyContainer}>
-                    {posts.map((post) => (
-                        <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
-                            <div className={styles.post}>
-                                <h1 className={styles.postTitle}>{post.title}</h1>
-                                <div className={styles.postContent}>
-                                    <p className={styles.postText}>{post.excerpt}</p>
-                                    <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                    {posts.length > 0 ? 
+                        posts.map((post) => (
+                            <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                                <div className={styles.post}>
+                                    <h1 className={styles.postTitle}>{post.title}</h1>
+                                    <div className={styles.postContent}>
+                                        <p className={styles.postText}>{post.excerpt}</p>
+                                        <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        )) :
+                        <div className={styles.no_posts}>No Posts Found</div>
+                    }
                 </section>
             </main>
             <PageFooter />

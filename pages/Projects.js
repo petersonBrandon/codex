@@ -65,20 +65,23 @@ const Projects = ({ projectsData, isLoggedIn, userClearance }) => {
                         <h1>Projects</h1>
                     </section>
                     <section className={styles.projectsContainer}>
-                        {projects.map((project) => (
-                            <Link key={project._id} href={`/dynamicRoutes/projectPosts/${project._id}`} passHref>
-                                <div className={styles.projectCard}>
-                                    <h1 className={styles.projectTitle}>{project.title}</h1>
-                                    <div className={styles.projectContent}>
-                                        <p className={styles.projectDesc}>{project.description}</p>
-                                        <div className={styles.cardFooter}>
-                                            <p className={styles.postNumber}>Posts: {project.posts.length}</p>
-                                            <p className={styles.projectDate}>Date Started: {project.dateStarted}</p>
+                        {projects.length > 0 ?
+                            projects.map((project) => (
+                                <Link key={project._id} href={`/dynamicRoutes/projectPosts/${project._id}`} passHref>
+                                    <div className={styles.projectCard}>
+                                        <h1 className={styles.projectTitle}>{project.title}</h1>
+                                        <div className={styles.projectContent}>
+                                            <p className={styles.projectDesc}>{project.description}</p>
+                                            <div className={styles.cardFooter}>
+                                                <p className={styles.postNumber}>Posts: {project.posts.length}</p>
+                                                <p className={styles.projectDate}>Date Started: {project.dateStarted}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            )) :
+                            <div className={styles.no_projects}>No Projects Found</div>
+                        }
                     </section>
                 </section> 
             </main>

@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .bodyContainer {
@@ -81,6 +82,13 @@
     text-align: right;
     font-size: calc(0.2em + 0.5vw);
     height: 10%;
+}
+
+.no_posts {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 1100px) {
