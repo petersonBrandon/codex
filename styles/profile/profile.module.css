@@ -91,18 +91,28 @@
 }
 
 .deleteAccBtn {
-    background-color: #FF2323;
+    background-color: #0b0c10;
+    box-shadow: 0px 0px 10px 1px #FF2323;
     border: none;
     color: white;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 30px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    color: #FF2323;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
 }
 
 .deleteAccBtn:hover {
-    background-color: #FF7070;
+    background-color: #FF2323;
+    box-shadow: 0px 0px 20px 1px #FF2323;
+    color: white;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
 }
 
 .delete_confirm {

@@ -229,7 +229,7 @@ export default async function handler(req, res) {
                                       <tbody>
                                         <tr>
                                         <td align="center" bgcolor="#004aad" class="inner-td" style="border-radius:6px; font-size:16px; text-align:center; background-color:inherit;">
-                                          <a href="http://localhost:3000/${token}" style="background-color:#004aad; border:1px solid #333333; border-color:#333333; border-radius:6px; border-width:1px; color:#ffffff; display:inline-block; font-size:24px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 18px 12px 18px; text-align:center; text-decoration:none; border-style:solid;" target="_blank">Reset Password</a>
+                                          <a href="http://localhost:3000/dynamicRoutes/reset/${token}" style="background-color:#004aad; border:1px solid #333333; border-color:#333333; border-radius:6px; border-width:1px; color:#ffffff; display:inline-block; font-size:24px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 18px 12px 18px; text-align:center; text-decoration:none; border-style:solid;" target="_blank">Reset Password</a>
                                         </td>
                                         </tr>
                                       </tbody>
