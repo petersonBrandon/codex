@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 80vh;
+    color: white;
 }
 
 .bodyContainer {
@@ -35,7 +36,8 @@
 }
 
 .error a{
-    background-color: #4c9f70;
+    background-color: #1f2833;
+    box-shadow: 0px 0px 10px 1px #45a29e;
     border: none;
     border-radius: 20px;
     color: white;
@@ -49,8 +51,8 @@
 }
 
 .error a:hover {
-    background-color: #75BD94;
-    cursor: pointer;
+    background-color: #45a29e;
+    box-shadow: 0px 0px 20px 1px #45a29e;
 
     transition-timing-function: ease;
     transition-duration: 0.5s;
@@ -103,12 +105,11 @@
     justify-content: center;
     width: 18%;
     height: 100%;
-    background-color: #E0E0E0;
+    background-color: #45a29e;
     border-radius: 10px 0px 0px 10px;
 }
 
 .inputField input {
-    background-color: #EBEBEB;
     width: 82%;
     height: 100%;
     outline: none;
@@ -121,19 +122,9 @@
     transition-duration: 0.5s;
 }
 
-.inputField input:hover {
-    background-color: #F5F5F5;
-
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.inputField input:focus {
-    background-color: #F5F5F5;
-}
-
 .formButton {
-    background-color: #4c9f70;
+    background-color: #1f2833;
+    box-shadow: 0px 0px 10px 1px #45a29e;
     border: none;
     border-radius: 20px;
     color: white;
@@ -147,8 +138,8 @@
 }
 
 .formButton:hover {
-    background-color: #75BD94;
-    cursor: pointer;
+    background-color: #45a29e;
+    box-shadow: 0px 0px 20px 1px #45a29e;
 
     transition-timing-function: ease;
     transition-duration: 0.5s;
