@@ -5,22 +5,22 @@ import {useState} from 'react'
 
 const ProfilePage = (props) => {
     const SETTINGS = "settings";
-    const PROJECTS = "projects";
-    const [window, setWindow] = useState(PROJECTS);
-    const [focus, setFocus] = useState(PROJECTS);
+    const DASH = "dashboard";
+    const [window, setWindow] = useState(DASH);
+    const [focus, setFocus] = useState(DASH);
 
     return (
         <div className={styles.profileContainer}>
             <section className={styles.nav}>
                 <div className={styles.navBtn_container}>
-                    <div className={styles.navBtn} id={focus === PROJECTS ? styles.focused : null} onClick={() => {setWindow(PROJECTS); setFocus(PROJECTS)}}>Projects</div>
+                    <div className={styles.navBtn} id={focus === DASH ? styles.focused : null} onClick={() => {setWindow(DASH); setFocus(DASH)}}>Dashboard</div>
                     <div className={styles.navBtn} id={focus === SETTINGS ? styles.focused : null} onClick={() => {setWindow(SETTINGS); setFocus(SETTINGS)}}>Settings</div>
                 </div>
             </section>
 
             <section className={styles.content}>
                 {window === SETTINGS ? <Settings user={props.user} /> : <meta />}
-                {window === PROJECTS ? <Projects projects = {props.projects}/> : <meta />}
+                {window === DASH ? <Projects projects = {props.projects}/> : <meta />}
             </section>
         </div>
     )
