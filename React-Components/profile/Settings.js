@@ -44,6 +44,7 @@ const Settings = ({user}) => {
             </div>
             {deleteActive ? 
                 <div className={styles.delete_confirm}>
+                    <div className={styles.blur}></div>
                     <div className={styles.delete_modal}>
                         <h1>Are you sure?</h1>
                         <h2>Deleting your account will also remove all projects and posts that you created.</h2>
