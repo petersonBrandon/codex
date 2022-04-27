@@ -122,7 +122,7 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                             <Link href='/Projects'>Projects</Link>
                         </div>
                         <div className={styles.link}>
-                            {isLoggedIn ? <Link href="/profile">Profile</Link> : <meta />}
+                            {isLoggedIn ? <Link href="/profile">Dashboard</Link> : <meta />}
                         </div>
                         <div className={styles.link}>
                             {isLoggedIn ? <div onClick={handleLogout}>Logout</div> : <Link href="/login/Login">Login</Link>}

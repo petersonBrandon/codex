@@ -22,7 +22,7 @@ const ProfileIcon = (props) => {
             <AiOutlineUser className={styles.userIcon} onClick={toggle}/>
             <div className={isDropped ? styles.dropOpen : styles.dropClosed}>
                 <div className={styles.dropItem}>
-                    <Link href="/profile" >Profile</Link>
+                    <Link href="/profile" >Dashboard</Link>
                 </div>
                 <div className={styles.dropItem}>
                     <div onClick={props.onClick} >Logout</div>
