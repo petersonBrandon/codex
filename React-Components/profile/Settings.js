@@ -37,14 +37,22 @@ const Settings = ({user}) => {
                             <button className={styles.edit_submit} onClick={() => setEditEmail(false)}>Submit</button>
                         </div>
                     </section>
-
                 </div>
                 <div className={styles.settings_section}>
                     <div className={styles.section_title}>Password:</div>
                     <div className={styles.section_function}>
                         <div>***********</div>
-                        <button className={styles.edit_btn}>Edit</button>
+                        <button className={styles.edit_btn} onClick={() => setEditPassword(true)}>Edit</button>
                     </div>
+                    <section className={styles.edit_form} id={editPassword ? styles.edit_pass_open : styles.edit_pass_closed}>
+                        <input type="text" placeholder='Current Password'></input>
+                        <input type="text" placeholder='New Password'></input>
+                        <input type="text" placeholder='Confirm Password'></input>
+                        <div className={styles.edit_btn_container}>
+                            <button className={styles.edit_cancel} onClick={() => setEditPassword(false)}>Cancel</button>
+                            <button className={styles.edit_submit} onClick={() => setEditPassword(false)}>Submit</button>
+                        </div>
+                    </section>
                 </div>
             </div>
             <div>

@@ -159,6 +159,24 @@
     transition-duration: 0.5s;
 }
 
+#edit_pass_closed {
+    opacity: 0;
+    height: 0px;
+    transform: scaleY(0);
+    
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+#edit_pass_open {
+    opacity: 1;
+    height: 250px;
+    transform: scaleY(100%);
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
 .edit_form {
     display: flex;
     flex-direction: column;
