@@ -1,6 +1,7 @@
 import styles from '../../styles/profile/profile.module.css';
 import axios from 'axios'
 import React, { useState } from 'react';
+import { AiOutlineUser } from "react-icons/ai";
 
 const Settings = ({user}) => {
     const [deleteActive, setDeleteActive] = useState(false);
@@ -16,12 +17,25 @@ const Settings = ({user}) => {
 
     return (
         <div className={styles.settings_container}>
-            <h1 className={styles.profileHeader}>
-                {user.userName}
-            </h1>
+            <div className={styles.profileHeader}>
+                <AiOutlineUser className={styles.profile_image}/>
+                <h1>{user.userName}</h1>
+            </div>
             <div className={styles.profileBody}>
-                <div className={styles.section_title}>Email:</div>
-                <div>{user.userEmail}</div>
+                <div className={styles.settings_section}>
+                    <div className={styles.section_title}>Email:</div>
+                    <div className={styles.section_function}>
+                        <div>{user.userEmail}</div>
+                        <button className={styles.edit_btn}>Edit</button>
+                    </div>
+                </div>
+                <div className={styles.settings_section}>
+                    <div className={styles.section_title}>Password:</div>
+                    <div className={styles.section_function}>
+                        <div>***********</div>
+                        <button className={styles.edit_btn}>Edit</button>
+                    </div>
+                </div>
             </div>
             <div>
                 <button className={styles.deleteAccBtn} onClick={() => setDeleteActive(true)}>

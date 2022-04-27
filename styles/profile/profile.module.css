@@ -68,7 +68,7 @@
 * Profile Tab styles
 ***************************************************************/
 .settings_container {
-    height: 73vh;
+    /* height: 73vh; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -76,18 +76,66 @@
 
 .profileHeader {
     font-size: 3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.profile_image {
+    width: 200px;
+    height: 200px;
+    margin: 30px;
+    background-color: #45a29e;
+    border-radius: 100%;
 }
 
 .profileBody {
     font-size: 1.5rem;
 }
 
+.settings_section {
+    width: 100%;
+    background-color: #1f2833;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0px 20px 0px;
+}
+
 .section_title {
     font-size: 2rem;
     font-weight: bold;
-    border-bottom: 1px solid #45a29e;
-    width: 30%;
-    margin-bottom: 10px;
+    border-bottom: 1px solid #c5c6c7;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.section_function {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit_btn {
+    background-color: #1f2833;
+    border: none;
+    border-radius: 10px;
+    font-size: calc(0.5em + 0.5vw);
+    padding: 10px;
+    width: 100px;
+    color: white;
+    box-shadow: 0px 0px 10px 1px #45a29e;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.edit_btn:hover {
+    background-color: #45a29e;
+    box-shadow: 0px 0px 20px 1px #45a29e;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
 }
 
 .deleteAccBtn {
