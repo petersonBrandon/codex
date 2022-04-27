@@ -5,6 +5,8 @@ import { AiOutlineUser } from "react-icons/ai";
 
 const Settings = ({user}) => {
     const [deleteActive, setDeleteActive] = useState(false);
+    const [editEmail, setEditEmail] = useState(false);
+    const [editPassword, setEditPassword] = useState(false);
 
     const deleteAccount = () => {
         axios.post('/api/deleteAccount',
@@ -26,8 +28,16 @@ const Settings = ({user}) => {
                     <div className={styles.section_title}>Email:</div>
                     <div className={styles.section_function}>
                         <div>{user.userEmail}</div>
-                        <button className={styles.edit_btn}>Edit</button>
+                        <button className={styles.edit_btn} onClick={() => setEditEmail(true)}>Edit</button>
                     </div>
+                    <section className={styles.edit_form} id={editEmail ? styles.edit_mail_open : styles.edit_mail_closed}>
+                        <input type="text" placeholder='Enter new email'></input>
+                        <div className={styles.edit_btn_container}>
+                            <button className={styles.edit_cancel} onClick={() => setEditEmail(false)}>Cancel</button>
+                            <button className={styles.edit_submit} onClick={() => setEditEmail(false)}>Submit</button>
+                        </div>
+                    </section>
+
                 </div>
                 <div className={styles.settings_section}>
                     <div className={styles.section_title}>Password:</div>

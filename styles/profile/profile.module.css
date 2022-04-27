@@ -119,7 +119,7 @@
     background-color: #1f2833;
     border: none;
     border-radius: 10px;
-    font-size: calc(0.5em + 0.5vw);
+    font-size: calc(0.2em + 0.5vw);
     padding: 10px;
     width: 100px;
     color: white;
@@ -138,6 +138,86 @@
     transition-duration: 0.5s;
 }
 
+/***************************************************************
+* Edit dropdown styling
+***************************************************************/
+#edit_mail_closed {
+    opacity: 0;
+    height: 0px;
+    transform: scaleY(0);
+    
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+#edit_mail_open {
+    opacity: 1;
+    height: 120px;
+    transform: scaleY(100%);
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.edit_form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.edit_form input {
+    outline: none;
+    border: none;
+    padding: 0.25em;
+    padding-left: 10px;
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+    font-size: calc(0.1em + 1vw);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.edit_form button {
+    background-color: #1f2833;
+    border: none;
+    border-radius: 10px;
+    font-size: calc(0.2em + 0.5vw);
+    padding: 10px;
+    width: 100px;
+    margin: 20px 20px 20px 0px;
+    color: white;
+    cursor: pointer;
+}
+
+.edit_cancel {
+    box-shadow: 0px 0px 10px 1px #FF2323;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.edit_cancel:hover {
+    background-color: #FF2323;
+    box-shadow: 0px 0px 20px 1px #FF2323;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.edit_submit {
+    box-shadow: 0px 0px 10px 1px #45a29e;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.edit_submit:hover {
+    background-color: #45a29e;
+    box-shadow: 0px 0px 20px 1px #45a29e;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
 .deleteAccBtn {
     background-color: #0b0c10;
     box-shadow: 0px 0px 10px 1px #FF2323;
@@ -146,8 +226,9 @@
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 30px;
+    margin-top: 5px;
     cursor: pointer;
-    font-size: 1.25rem;
+    font-size: calc(0.2em + 0.5vw);
     color: #FF2323;
 
     transition-timing-function: ease;
