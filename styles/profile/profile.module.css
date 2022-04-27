@@ -152,7 +152,7 @@
 
 #edit_mail_open {
     opacity: 1;
-    height: 120px;
+    height: 130px;
     transform: scaleY(100%);
 
     transition-timing-function: ease;
@@ -234,6 +234,19 @@
 
     transition-timing-function: ease;
     transition-duration: 0.5s;
+}
+
+.message {
+    font-size: calc(0.2em + 0.5vw);
+    color: #66fcf1;
+}
+
+.mopen {
+    display: flex;
+}
+
+.mclosed {
+    display: none;
 }
 
 .deleteAccBtn {

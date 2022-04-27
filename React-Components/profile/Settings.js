@@ -1,12 +1,64 @@
 import styles from '../../styles/profile/profile.module.css';
 import axios from 'axios'
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { AiOutlineUser } from "react-icons/ai";
 
 const Settings = ({user}) => {
     const [deleteActive, setDeleteActive] = useState(false);
     const [editEmail, setEditEmail] = useState(false);
     const [editPassword, setEditPassword] = useState(false);
+    
+    const [emailChangeSuccess, setEmailChangeSuccess] = useState(true);
+    const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(true);
+    const [passwordCredCorrect, setPasswordCredsCorrect] = useState(true);
+    const { register, handleSubmit, formState: { errors }, } = useForm();
+
+    const onSubmitNewEmail = (data) => {
+        event.preventDefault;
+        // axios.post('/api/newEmail', {
+        //     email: data.email
+        // })
+        // .then(res => {
+        //     if (res.data === -1) {
+        //         setEmailChangeSuccess(false);
+        //     } else {
+        //         setEmailChangeSuccess(true);
+        //     }
+        //     console.log(res);
+        // })
+    };
+
+    const onSubmitNewPassword = (data) => {
+        event.preventDefault;
+        // axios.post('/api/newPassword', {
+        //     email: data.email
+        // })
+        // .then(res => {
+        //     if (res.data === -1) {
+        //         setEmailChangeSuccess(false);
+        //     } else {
+        //         setEmailChangeSuccess(true);
+        //     }
+        //     console.log(res);
+        // })
+    };
+
+    const resetForm = (form) => {
+        switch (form) {
+            case "EMAIL":
+                document.getElementById(styles.edit_mail_open).reset();
+                setEditEmail(false);
+                setEmailChangeSuccess(true);
+                break;
+            case "PASSWORD":
+                document.getElementById(styles.edit_pass_open).reset();
+                setEditPassword(false);
+                setPasswordChangeSuccess(true);
+                break;
+        }
+        
+    }
 
     const deleteAccount = () => {
         axios.post('/api/deleteAccount',
@@ -30,13 +82,13 @@ const Settings = ({user}) => {
                         <div>{user.userEmail}</div>
                         <button className={styles.edit_btn} onClick={() => setEditEmail(true)}>Edit</button>
                     </div>
-                    <section className={styles.edit_form} id={editEmail ? styles.edit_mail_open : styles.edit_mail_closed}>
-                        <input type="text" placeholder='Enter new email'></input>
+                    <form onSubmit={handleSubmit(onSubmitNewEmail)} className={styles.edit_form} id={editEmail ? styles.edit_mail_open : styles.edit_mail_closed}>
+                        <input {...register('email', {required: true})} type="email" placeholder='Enter new email'></input>
                         <div className={styles.edit_btn_container}>
-                            <button className={styles.edit_cancel} onClick={() => setEditEmail(false)}>Cancel</button>
-                            <button className={styles.edit_submit} onClick={() => setEditEmail(false)}>Submit</button>
+                            <button className={styles.edit_cancel} onClick={() => resetForm("EMAIL")} type='button'>Cancel</button>
+                            <button className={styles.edit_submit}>Submit</button>
                         </div>
-                    </section>
+                    </form>
                 </div>
                 <div className={styles.settings_section}>
                     <div className={styles.section_title}>Password:</div>
@@ -44,15 +96,15 @@ const Settings = ({user}) => {
                         <div>***********</div>
                         <button className={styles.edit_btn} onClick={() => setEditPassword(true)}>Edit</button>
                     </div>
-                    <section className={styles.edit_form} id={editPassword ? styles.edit_pass_open : styles.edit_pass_closed}>
-                        <input type="text" placeholder='Current Password'></input>
-                        <input type="text" placeholder='New Password'></input>
-                        <input type="text" placeholder='Confirm Password'></input>
+                    <form onSubmit={handleSubmit(onSubmitNewPassword)} className={styles.edit_form} id={editPassword ? styles.edit_pass_open : styles.edit_pass_closed}>
+                        <input {...register('currentPassword', {required: true})} type="password" placeholder='Current Password'></input>
+                        <input {...register('newPasword', {required: true})} type="password" placeholder='New Password'></input>
+                        <input {...register('confirmPassword', {required: true})} type="password" placeholder='Confirm Password'></input>
                         <div className={styles.edit_btn_container}>
-                            <button className={styles.edit_cancel} onClick={() => setEditPassword(false)}>Cancel</button>
-                            <button className={styles.edit_submit} onClick={() => setEditPassword(false)}>Submit</button>
+                            <button className={styles.edit_cancel} onClick={() => resetForm("PASSWORD")} type='button'>Cancel</button>
+                            <button className={styles.edit_submit}>Submit</button>
                         </div>
-                    </section>
+                    </form>
                 </div>
             </div>
             <div>
