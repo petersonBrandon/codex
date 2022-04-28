@@ -32,10 +32,10 @@ export const getServerSideProps = withIronSessionSsr (
                 projectsData.push(await Project.findById(project._id));
             }
 
-            projectsData = JSON.stringify(projectData);
+            const projectData = JSON.stringify(projectsData);
             return {
                 props: {
-                    projectsData,
+                    projectData,
                     isLoggedIn: req.session.isLoggedIn,
                     userClearance: req.session.clearance,
                     user: req.session
@@ -60,12 +60,12 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const profile = ({projectsData, isLoggedIn, userClearance, user}) => {
+const profile = ({projectData, isLoggedIn, userClearance, user}) => {
 
-    console.log(projectsData);
-    const projects = null;
-    if (projectsData) {
-        projects = JSON.parse(projectsData);
+    let projects = null;
+    console.log(`Project Data: ${projectData}`)
+    if (projectData) {
+        projects = JSON.parse(projectData);
     }
 
     return (

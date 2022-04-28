@@ -20,7 +20,7 @@ const ProfilePage = (props) => {
 
             <section className={styles.content}>
                 {window === SETTINGS ? <Settings user={props.user} /> : <meta />}
-                {window === DASH ? <Projects projects = {props.projects}/> : <meta />}
+                {window === DASH ? <Projects projects = {props.projectData}/> : <meta />}
             </section>
         </div>
     )
