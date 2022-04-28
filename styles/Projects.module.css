@@ -60,7 +60,7 @@
 }
 
 .projectCard:hover {
-    /* background-color: #7A7A7A; */
+    opacity: 0.7;
     box-shadow: 0px 0px 20px 1px #45a29e;
 
     transition-timing-function: ease;

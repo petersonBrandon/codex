@@ -36,7 +36,7 @@
 }
 
 .post:hover {
-    /* background-color: #c5c6c7; */
+    opacity: 0.7;
     box-shadow: 0px 0px 20px 1px #45a29e;
 
     transition-timing-function: ease;
