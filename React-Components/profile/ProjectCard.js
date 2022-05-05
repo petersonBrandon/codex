@@ -2,7 +2,7 @@ import styles from '../../styles/profile/dashboard.module.css';
 
 const ProjectCard = ({project}) => {
     return (
-        <div className={styles.project_card}>
+        <a href={`/dynamicRoutes/dashboard/${project._id}`} className={styles.project_card}>
             <div className={styles.project_card_header}>
                 {project.title}
             </div>
@@ -12,7 +12,7 @@ const ProjectCard = ({project}) => {
             <div className={styles.project_card_footer}>
                 {project.dateStarted}
             </div>
-        </div>
+        </a>
     )
 }
 
