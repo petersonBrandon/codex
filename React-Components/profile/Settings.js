@@ -9,9 +9,6 @@ const Settings = ({user}) => {
     const [editEmail, setEditEmail] = useState(false);
     const [editPassword, setEditPassword] = useState(false);
     
-    const [emailChangeSuccess, setEmailChangeSuccess] = useState(true);
-    const [passwordChangeSuccess, setPasswordChangeSuccess] = useState(true);
-    const [passwordCredCorrect, setPasswordCredsCorrect] = useState(true);
     const { register, handleSubmit, formState: { errors }, } = useForm();
 
     const onSubmitNewEmail = (data) => {

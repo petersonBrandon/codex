@@ -72,16 +72,23 @@
 .linkCard a {
   color: white;
   margin-bottom: 30px;
-  background-color: #45a29e;
+  box-shadow: 0px 0px 10px 1px #45a29e;
   padding: 10px;
   width: 50%;
   border-radius: 10px;
   font-size: calc(0.2em + 1vw);
+
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
 }
 
 .linkCard a:hover {
-  border: solid 3px #66fcf1;
+  background-color: #45a29e;
+  box-shadow: 0px 0px 20px 1px #45a29e;
   margin-bottom: 30px;
+
+  transition-timing-function: ease;
+  transition-duration: 0.5s;
 }
 
 @media only screen and (max-width: 1100px) {
