@@ -25,7 +25,7 @@ const LoginForm = () => {
                     setCorrectCreds(false);
               } else {
                     setCorrectCreds(true);
-                    window.location = '/';
+                    window.location = '/profile';
               }
             console.log(res);
           })

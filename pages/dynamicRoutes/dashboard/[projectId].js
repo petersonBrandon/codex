@@ -151,9 +151,9 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                     </section>
                 </section>
                 {deleteActive ? 
-                <div className={editStyles.delete_confirm}>
+                <div className={editStyles.popup_modal}>
                     <div className={editStyles.blur}></div>
-                    <div className={editStyles.delete_modal}>
+                    <div className={editStyles.modal}>
                         <h1>Are you sure?</h1>
                         <h2>Deleting this project will also remove all posts and forums that associated with it.</h2>
                         <div className={editStyles.confirmBtns}>
@@ -168,7 +168,7 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                 </div> 
                 :
                 <></>
-            }
+                }
             </main>
             <PageFooter />
         </div>
