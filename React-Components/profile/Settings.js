@@ -46,12 +46,12 @@ const Settings = ({user}) => {
             case "EMAIL":
                 document.getElementById(styles.edit_mail_open).reset();
                 setEditEmail(false);
-                setEmailChangeSuccess(true);
+                // setEmailChangeSuccess(true);
                 break;
             case "PASSWORD":
                 document.getElementById(styles.edit_pass_open).reset();
                 setEditPassword(false);
-                setPasswordChangeSuccess(true);
+                // setPasswordChangeSuccess(true);
                 break;
         }
         
