@@ -4,9 +4,16 @@ import ProjectCard from './ProjectCard';
 import { useState } from 'react';
 import editStyles from '../../styles/EditStyles.module.css'
 import {AiOutlineClose} from 'react-icons/ai'
+import { useForm, Controller } from 'react-hook-form';
 
 const Projects = ({ user, projects}) => {
     const [createProject, setCreateProject] = useState(false);
+    const { register, handleSubmit, formState: { errors }, control} = useForm();
+
+    const onSubmit = (data) => {
+        console.log("Testing")
+    } 
+
     return (
         <div className={styles.projects_container}>
             <div className={styles.project_header}>
@@ -30,11 +37,13 @@ const Projects = ({ user, projects}) => {
                             <AiOutlineClose className={editStyles.edit} onClick={()  => setCreateProject(false)}/>
                         </div>
                         <h1>Create Project</h1>
-                        <form className={editStyles.createProj}>
-                            <input type='text' placeholder='Title' className={editStyles.createProjectTitle}></input>
-                            <textarea placeholder='Description' className={editStyles.createProjectDesc} rows='15'></textarea>
+                        <form className={editStyles.createProj} onSubmit={handleSubmit(onSubmit)}>
+                            <input {...register('projectTitle', {required: true})} type='text' placeholder='Title' className={editStyles.createProjectTitle}></input>
+                            {errors.projectTitle && <p>*Please enter a title.</p>}
+                            <textarea {...register('projectDesc', {required: true})} placeholder='Description' className={editStyles.createProjectDesc} rows='15'></textarea>
+                            {errors.projectDesc && <p>*Please enter a description.</p>}
                             <div>
-                                <button className={editStyles.createProjBtn} >
+                                <button type="submit" className={editStyles.createProjBtn} >
                                     Create
                                 </button>
                             </div>
