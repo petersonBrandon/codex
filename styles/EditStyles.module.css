@@ -244,3 +244,29 @@
     font-size: 1rem;
     margin: 0;
 }
+
+.addPost {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+
+.addPostBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.addPostBtn:hover {
+    color: #45a29e;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}

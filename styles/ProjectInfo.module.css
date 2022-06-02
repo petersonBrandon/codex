@@ -101,6 +101,13 @@
     height: 10%;
 }
 
+.noPosts {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 @media only screen and (max-width: 1100px) {
     
     .bodyContainer {

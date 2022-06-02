@@ -4,6 +4,8 @@ import Post from '../../../models/post';
 import Head from 'next/head';
 import Link from 'next/link';
 import { FaPen, FaTrash } from 'react-icons/fa'
+import { VscAdd } from 'react-icons/vsc';
+import {AiOutlineClose} from 'react-icons/ai'
 import { useForm } from 'react-hook-form';
 import { withIronSessionSsr } from 'iron-session/next'
 import { useState } from 'react';
@@ -26,7 +28,6 @@ export const getServerSideProps = withIronSessionSsr (
         try {
             let projectData = await Project.findById(params.projectId);
 
-            console.log(projectData);
             let postsData = [];
             for( let post of projectData.posts ) {
                 postsData.push(await Post.findById(post.postId));
@@ -65,12 +66,29 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
     const posts = JSON.parse(postsData);
     const [editMode, setEditMode] = useState(false);
     const [deleteActive, setDeleteActive] = useState(false);
+    const [createPost, setCreatePost] = useState(false);
     
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         axios.post('/api/update/updateProject', {
             email: user.userEmail,
+            projId: project._id,
+            title: data.title,
+            desc: data.desc
+        })
+        .then(res => {
+            if (res.data === -1) {
+                //TODO: Error handle here
+            } else {
+                window.location.reload();
+            }
+            console.log(res);
+        })
+    };
+
+    const onCreatePostSubmit = (data) => {
+        axios.post('/api/createPost', {
             projId: project._id,
             title: data.title,
             desc: data.desc
@@ -137,17 +155,26 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                         
                     }
                     <section className={styles.postsContainer}>
-                        {posts.map((post) => (
-                            <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
-                                <div className={styles.post}>
-                                    <h1 className={styles.postTitle}>{post.title}</h1>
-                                    <div className={styles.postContent}>
-                                        <p className={styles.postText}>{post.excerpt}</p>
-                                        <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                        <div className={editStyles.addPost}>
+                            <VscAdd className={editStyles.addPostBtn} onClick={() => setCreatePost(true)} />
+                        </div>
+                        {posts.length <= 0 ?
+                            <div className={styles.noPosts}>
+                                <h2>No Posts</h2>
+                            </div>
+                        :
+                            posts.map((post) => (
+                                <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                                    <div className={styles.post}>
+                                        <h1 className={styles.postTitle}>{post.title}</h1>
+                                        <div className={styles.postContent}>
+                                            <p className={styles.postText}>{post.excerpt}</p>
+                                            <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            ))
+                        }
                     </section>
                 </section>
                 {deleteActive ? 
@@ -169,6 +196,30 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                 :
                 <></>
                 }
+                {createPost ? 
+                <div className={editStyles.popup_modal}>
+                    <div className={editStyles.blur}></div>
+                    <div className={editStyles.modal}>
+                        <div className={editStyles.createClose}>
+                            <AiOutlineClose className={editStyles.edit} onClick={()  => setCreatePost(false)}/>
+                        </div>
+                        <h1>Create Post</h1>
+                        <form className={editStyles.createProj} onSubmit={handleSubmit(onCreatePostSubmit)}>
+                            <input {...register('title', {required: true})} type='text' placeholder='Title' className={editStyles.createProjectTitle}></input>
+                            {errors.projectTitle && <p>*Please enter a title.</p>}
+                            <textarea {...register('desc', {required: true})} placeholder='Description' className={editStyles.createProjectDesc} rows='15'></textarea>
+                            {errors.projectDesc && <p>*Please enter a description.</p>}
+                            <div>
+                                <button className={editStyles.createProjBtn} >
+                                    Create
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div> 
+                :
+                <></>
+            }
             </main>
             <PageFooter />
         </div>
