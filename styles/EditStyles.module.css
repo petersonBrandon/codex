@@ -270,3 +270,43 @@
     transition-timing-function: ease;
     transition-duration: 0.5s;
 }
+
+.postHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+    background-color: #45a29e;
+}
+
+.postTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    margin-right: 30%;
+    padding: 15px;
+    text-align: center;
+    color: white;
+    height: 30%;
+    font-size: calc(1em + 0.5vw);
+}
+
+.threeDots {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    margin-right: 5%;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.threeDots:hover {
+    color: #1f2833;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}

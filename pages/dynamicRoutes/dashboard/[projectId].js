@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { FaPen, FaTrash } from 'react-icons/fa'
 import { VscAdd } from 'react-icons/vsc';
 import {AiOutlineClose} from 'react-icons/ai'
+import { BsThreeDots } from 'react-icons/bs'
 import { useForm } from 'react-hook-form';
 import { withIronSessionSsr } from 'iron-session/next'
 import { useState } from 'react';
@@ -164,9 +165,12 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                             </div>
                         :
                             posts.map((post) => (
-                                <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                                <Link key={post._id} href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
                                     <div className={styles.post}>
-                                        <h1 className={styles.postTitle}>{post.title}</h1>
+                                        <div className={editStyles.postHeader}>
+                                            <h1 className={editStyles.postTitle}>{post.title}</h1>
+                                            <BsThreeDots className={editStyles.threeDots}/>
+                                        </div>
                                         <div className={styles.postContent}>
                                             <p className={styles.postText}>{post.excerpt}</p>
                                             <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
