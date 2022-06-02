@@ -31,7 +31,17 @@ export const getServerSideProps = withIronSessionSsr (
             for ( let project of user.projects ) {
                 projectsData.push(await Project.findById(project._id));
             }
+            projectsData = projectsData.sort((a, b) => {
+                let fid = a._id.toString();
+                let sid = b._id.toString();
+                if (fid > sid)
+                    return -1;
 
+                if (fid < sid)
+                    return 1
+
+                return 0
+            })
             const projectData = JSON.stringify(projectsData);
             return {
                 props: {

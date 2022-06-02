@@ -1,6 +1,7 @@
 import styles from '../../styles/profile/dashboard.module.css';
 import { VscAdd } from 'react-icons/vsc';
 import ProjectCard from './ProjectCard';
+import axios from 'axios'
 import { useState } from 'react';
 import editStyles from '../../styles/EditStyles.module.css'
 import {AiOutlineClose} from 'react-icons/ai'
@@ -8,10 +9,24 @@ import { useForm, Controller } from 'react-hook-form';
 
 const Projects = ({ user, projects}) => {
     const [createProject, setCreateProject] = useState(false);
-    const { register, handleSubmit, formState: { errors }, control} = useForm();
+    const [projectCreated, setProjectCreated] = useState(true);
+    const { register, handleSubmit, formState: { errors }} = useForm();
 
     const onSubmit = (data) => {
-        console.log("Testing")
+        axios.post('/api/createProject', {
+            projectName: data.projectTitle,
+            projectDesc: data.projectDesc,
+            email: user.userEmail
+        })
+        .then(res => {
+            if (res.data === -1) {
+                setProjectCreated(false);
+            } else {
+                setProjectCreated(true);
+                window.location = '/profile';
+            }
+          console.log(res);
+        })
     } 
 
     return (
@@ -43,7 +58,7 @@ const Projects = ({ user, projects}) => {
                             <textarea {...register('projectDesc', {required: true})} placeholder='Description' className={editStyles.createProjectDesc} rows='15'></textarea>
                             {errors.projectDesc && <p>*Please enter a description.</p>}
                             <div>
-                                <button type="submit" className={editStyles.createProjBtn} >
+                                <button className={editStyles.createProjBtn} >
                                     Create
                                 </button>
                             </div>
@@ -52,7 +67,8 @@ const Projects = ({ user, projects}) => {
                 </div> 
                 :
                 <></>
-                }
+            }
+            {/* TODO: Implement error message for failed project creation */}
         </div>
     )
 }
