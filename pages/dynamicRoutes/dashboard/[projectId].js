@@ -167,10 +167,7 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                             posts.map((post) => (
                                 <Link key={post._id} href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
                                     <div className={styles.post}>
-                                        <div className={editStyles.postHeader}>
-                                            <h1 className={editStyles.postTitle}>{post.title}</h1>
-                                            <BsThreeDots className={editStyles.threeDots}/>
-                                        </div>
+                                        <h1 className={styles.postTitle}>{post.title}</h1>
                                         <div className={styles.postContent}>
                                             <p className={styles.postText}>{post.excerpt}</p>
                                             <p className={styles.postDate}>Date Created: {post.dateCreated}</p>

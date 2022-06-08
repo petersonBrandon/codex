@@ -50,6 +50,7 @@ export const getServerSideProps = withIronSessionSsr (
 const post = ({postData, isLoggedIn, userClearance}) => {
     const post = JSON.parse(postData);
     const [editMode, setEditMode] = useState(false);
+    const [deleteActive, setDeleteActive] = useState(false);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -69,6 +70,10 @@ const post = ({postData, isLoggedIn, userClearance}) => {
             console.log(res);
         })
     };
+
+    const deletePost = () => {
+        
+    }
     return (
         <div className={styles.container}>
             <Head>
@@ -108,6 +113,25 @@ const post = ({postData, isLoggedIn, userClearance}) => {
                                     </p>
                                 </div>
                             </section>       
+                    }
+                    {deleteActive ? 
+                    <div className={editStyles.popup_modal}>
+                        <div className={editStyles.blur}></div>
+                        <div className={editStyles.modal}>
+                            <h1>Are you sure?</h1>
+                            <h2>This will permanently delete this post.</h2>
+                            <div className={editStyles.confirmBtns}>
+                                <button className={editStyles.deleteCancelBtn} onClick={()  => setDeleteActive(false)}>
+                                    Cancel
+                                </button>
+                                <button className={editStyles.confirmDeleteBtn} onClick={deletePost}>
+                                    Just do it.
+                                </button>
+                            </div>
+                        </div>
+                    </div> 
+                    :
+                    <></>
                     }
                 </section>
             </main>
