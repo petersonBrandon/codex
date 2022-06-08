@@ -1,6 +1,7 @@
 import dbConnect from '../../../../lib/connectDB';
 import Post from '../../../../models/post';
 import Head from 'next/head';
+import axios from 'axios'
 
 import { FaPen, FaTrash } from 'react-icons/fa'
 import { useState } from 'react';
@@ -29,7 +30,8 @@ export const getServerSideProps = withIronSessionSsr (
                 props: {
                     postData,
                     isLoggedIn: req.session.isLoggedIn,
-                    userClearance: req.session.clearance
+                    userClearance: req.session.clearance,
+                    user: req.session
                 }
             }
         } catch (error) {
@@ -47,7 +49,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const post = ({postData, isLoggedIn, userClearance}) => {
+const post = ({postData, isLoggedIn, userClearance, user}) => {
     const post = JSON.parse(postData);
     const [editMode, setEditMode] = useState(false);
     const [deleteActive, setDeleteActive] = useState(false);
@@ -72,7 +74,20 @@ const post = ({postData, isLoggedIn, userClearance}) => {
     };
 
     const deletePost = () => {
-        
+        axios.post('/api/update/deletePost', {
+            projId: post.projectId,
+            postId: post._id,
+            email: user.userEmail,
+            isLoggedIn: isLoggedIn
+        })
+        .then(res => {
+            if (res.data === -1) {
+                //TODO: Error handle here
+            } else {
+                window.location = `/dynamicRoutes/dashboard/${post.projectId}`
+            }
+            console.log(res);
+        })
     }
     return (
         <div className={styles.container}>

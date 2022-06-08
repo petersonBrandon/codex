@@ -45,7 +45,8 @@ export default async function handler(req, res) {
             author: "Brandon Peterson",
             excerpt: postExcerpt,
             text: postText,
-            dateCreated: currentDate
+            dateCreated: currentDate,
+            projectId: projectId
         });
 
         updateProj.posts.push({

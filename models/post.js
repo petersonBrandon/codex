@@ -24,6 +24,10 @@ const postSchema = new Schema({
     },
     dateEdited: {
         type: String,
+    },
+    projectId: {
+        type: Schema.Types.ObjectId,
+        required: true
     }
 });
 
