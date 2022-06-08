@@ -69,14 +69,6 @@ const PageHeader = ({isLoggedIn, clearance}) => {
                         </div>
                         <MdSearch className={styles.searchIcon} onClick={search}/>
                     </div>
-                    {isLoggedIn && clearance > '0' ? 
-                        <div className={styles.link}>
-                            <Link href="/createPost">
-                                <VscAdd className={styles.addIcon}/>
-                            </Link>
-                        </div>
-                        : <meta/>
-                    }
                     <div className={styles.link}>
                         {isLoggedIn ? <ProfileDropdown onClick={handleLogout} /> : <Link href="/login/Login">Login</Link> }
                     </div>
