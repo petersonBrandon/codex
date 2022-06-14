@@ -23,6 +23,13 @@ const projectSchema = new Schema({
             ref: 'Post',
             required: true
         }
+    } ],
+    followers: [ {
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        }
     } ]
 });
 

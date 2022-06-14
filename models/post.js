@@ -28,7 +28,21 @@ const postSchema = new Schema({
     projectId: {
         type: Schema.Types.ObjectId,
         required: true
-    }
+    },
+    likes: [ {
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+            required: true
+        }
+    } ],
+    comments: [ {
+        commentId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Comment',
+            required: true
+        }
+    } ]
 });
 
 mongoose.models = {};

@@ -32,18 +32,18 @@ const userSchema = new Schema({
             ref: 'Project',
         }
     } ],
-    posts: [ {
-        postId: {
-            type: Schema.Types.ObjectId,
-            ref: 'Post',
-        }
-    } ],
     resetToken: {
         type: String
     },
     resetTokenExpiration: {
         type: Date
-    } 
+    },
+    following: [ {
+        projectId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Project',
+        }
+    } ]
 });
 
 mongoose.models = {};
