@@ -57,11 +57,12 @@ const post = ({postData, isLoggedIn, userClearance, user}) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        axios.post('/api/update/updateProject', {
+        axios.post('/api/update/updatePost', {
             email: user.userEmail,
-            projId: project._id,
+            postId: post._id,
             title: data.title,
-            desc: data.desc
+            desc: data.desc,
+            isLoggedIn: isLoggedIn
         })
         .then(res => {
             if (res.data === -1) {

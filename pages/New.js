@@ -8,6 +8,8 @@ import Post from '../models/post';
 import { withIronSessionSsr } from 'iron-session/next'
 
 import styles from '../styles/New.module.css';
+import postStyles from '../styles/ProjectInfo.module.css'
+import LikeButton from '../React-Components/Post/LikeButton';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({req}) => {
@@ -27,7 +29,8 @@ export const getServerSideProps = withIronSessionSsr (
                 props: {
                     postsData, 
                     isLoggedIn: req.session.isLoggedIn,
-                    userClearance: req.session.clearance
+                    userClearance: req.session.clearance,
+                    user: req.session
                 }
             }
         } catch (error) {
@@ -45,7 +48,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const New = ({ postsData, isLoggedIn, userClearance }) => {
+const New = ({ postsData, isLoggedIn, userClearance, user }) => {
     const posts = JSON.parse(postsData);
     return (
         <div className={styles.container}>
@@ -60,15 +63,20 @@ const New = ({ postsData, isLoggedIn, userClearance }) => {
                 <section className={styles.bodyContainer}>
                     {posts.length > 0 ? 
                         posts.map((post) => (
-                            <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
-                                <div className={styles.post}>
-                                    <h1 className={styles.postTitle}>{post.title}</h1>
-                                    <div className={styles.postContent}>
-                                        <p className={styles.postText}>{post.excerpt}</p>
-                                        <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                            <div className={postStyles.post}>
+                                <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                                    <div className={postStyles.postLink}>
+                                        <h1 className={postStyles.postTitle}>{post.title}</h1>
+                                        <div className={postStyles.postContent}>
+                                            <p className={postStyles.postText}>{post.excerpt}</p>
+                                        </div>
                                     </div>
+                                </Link>
+                                <div className={postStyles.postFooter}>
+                                    <LikeButton post={post} user={user} />
+                                    <p className={postStyles.postDate}>Date Created: {post.dateCreated}</p>
                                 </div>
-                            </Link>
+                            </div>
                         )) :
                         <div className={styles.no_posts}>No Posts Found</div>
                     }

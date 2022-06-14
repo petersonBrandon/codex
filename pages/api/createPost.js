@@ -12,6 +12,7 @@ export default async function handler(req, res) {
         const projectId = req.body.projId;
         const postTitle = req.body.title;
         const postText = req.body.desc;
+        const user = req.body.user;
 
         let postExcerpt = "";
 
@@ -42,7 +43,7 @@ export default async function handler(req, res) {
         const updateProj = await Project.findById(projectId);
         const post = new Post({
             title: postTitle,
-            author: "Brandon Peterson",
+            author: user.userName,
             excerpt: postExcerpt,
             text: postText,
             dateCreated: currentDate,
@@ -52,13 +53,13 @@ export default async function handler(req, res) {
         updateProj.posts.push({
             postId: post._id
         });
-            
+
         try {
             await post.save();
-            await Project.findOneAndUpdate(updateProj._id, updateProj, { new: true });
+            await updateProj.save();
+            res.send(1)
         } catch {
             res.send(-1);
         }
-        res.send(1)
     }
   }

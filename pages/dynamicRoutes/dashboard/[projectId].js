@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { FaPen, FaTrash } from 'react-icons/fa'
 import { VscAdd } from 'react-icons/vsc';
 import {AiOutlineClose} from 'react-icons/ai'
-import { BsThreeDots } from 'react-icons/bs'
 import { useForm } from 'react-hook-form';
 import { withIronSessionSsr } from 'iron-session/next'
 import { useState } from 'react';
@@ -15,6 +14,7 @@ import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
 import styles from '../../../styles/ProjectInfo.module.css';
 import editStyles from '../../../styles/EditStyles.module.css'
+import LikeButton from '../../../React-Components/Post/LikeButton';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({params, req}) => {
@@ -92,12 +92,15 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
         axios.post('/api/createPost', {
             projId: project._id,
             title: data.title,
-            desc: data.desc
+            desc: data.desc,
+            user: user
         })
         .then(res => {
             if (res.data === -1) {
                 //TODO: Error handle here
+                console.log("Error in post creation.")
             } else {
+                console.log("Post created.")
                 window.location.reload();
             }
             console.log(res);
@@ -165,15 +168,20 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                             </div>
                         :
                             posts.map((post) => (
-                                <Link key={post._id} href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
-                                    <div className={styles.post}>
-                                        <h1 className={styles.postTitle}>{post.title}</h1>
-                                        <div className={styles.postContent}>
-                                            <p className={styles.postText}>{post.excerpt}</p>
-                                            <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
+                                <div className={styles.post}>
+                                    <Link key={post._id} href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
+                                        <div className={styles.postLink}>
+                                            <h1 className={styles.postTitle}>{post.title}</h1>
+                                            <div className={styles.postContent}>
+                                                <p className={styles.postText}>{post.excerpt}</p>
+                                            </div>
                                         </div>
+                                    </Link>
+                                    <div className={styles.postFooter}>
+                                        <LikeButton post={post} user={user} />
+                                        <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
                                     </div>
-                                </Link>
+                                </div>
                             ))
                         }
                     </section>
