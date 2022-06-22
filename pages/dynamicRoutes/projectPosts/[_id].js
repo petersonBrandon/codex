@@ -9,7 +9,9 @@ import { withIronSessionSsr } from 'iron-session/next'
 import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
 import styles from '../../../styles/ProjectInfo.module.css';
+import editStyles from '../../../styles/EditStyles.module.css'
 import LikeButton from '../../../React-Components/Post/LikeButton';
+import FollowButton from '../../../React-Components/project/FollowButton';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({params, req}) => {
@@ -73,7 +75,12 @@ const project = ({projectData, postsData, isLoggedIn, userClearance, user}) => {
             <main className={styles.main} >
                 <section className={styles.bodyContainer}>
                     <section className={styles.heading}>
-                        <h1>{project.title}</h1>
+                        <div className={editStyles.projectHeading}>
+                            <h1>{project.title}</h1>
+                            <div className={editStyles.actionButtons}>
+                                <FollowButton project={project} user={user}/>
+                            </div>
+                        </div>
                         <p className={styles.projectDate}>Date Started: {project.dateStarted}</p>
                         <p className={styles.projectDesc}>{project.description}</p>
                     </section>
