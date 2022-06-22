@@ -1,5 +1,6 @@
 import dbConnect from '../../../../lib/connectDB';
 import Post from '../../../../models/post';
+import Comment from '../../../../models/comment'
 import Head from 'next/head';
 import axios from 'axios'
 
@@ -12,6 +13,7 @@ import styles from '../../../../styles/Post.module.css';
 import PageHeader from '../../../../React-Components/PageHeader';
 import PageFooter from '../../../../React-Components/PageFooter';
 import editStyles from '../../../../styles/EditStyles.module.css'
+import CommentSection from '../../../../React-Components/Post/CommentSection';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({params, req}) => {
@@ -130,6 +132,7 @@ const post = ({postData, isLoggedIn, userClearance, user}) => {
                                 </div>
                             </section>       
                     }
+                    <CommentSection post={post} user={user}/>
                     {deleteActive ? 
                     <div className={editStyles.popup_modal}>
                         <div className={editStyles.blur}></div>
