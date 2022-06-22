@@ -14,8 +14,13 @@
     flex-direction: column;
 }
 
+.actionButtons {
+    display: flex;
+    flex-direction: row;
+}
+
 .editActions {
-    margin: 20px;
+    margin: 15px;
 }
 
 .edit {

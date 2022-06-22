@@ -40,7 +40,7 @@ const Projects = ({ user, projects}) => {
                     <div className={styles.emptyProjectList}></div>
                     :
                     projects.map((project) => (
-                        <ProjectCard project={project}/>
+                        <ProjectCard project={project} user={user}/>
                     ))
                 }
             </section>

@@ -15,6 +15,7 @@ import PageFooter from '../../../React-Components/PageFooter';
 import styles from '../../../styles/ProjectInfo.module.css';
 import editStyles from '../../../styles/EditStyles.module.css'
 import LikeButton from '../../../React-Components/Post/LikeButton';
+import FollowButton from '../../../React-Components/project/FollowButton';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({params, req}) => {
@@ -148,7 +149,8 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                         <section className={styles.heading}>
                             <div className={editStyles.projectHeading}>
                                 <h1>{project.title}</h1>
-                                <div>
+                                <div className={editStyles.actionButtons}>
+                                    <FollowButton project={project} user={user}/>
                                     <FaPen className={`${editStyles.editActions} ${editStyles.edit}`} onClick={() => setEditMode(true)}/>
                                     <FaTrash className={`${editStyles.editActions} ${editStyles.delete}`} onClick={() => setDeleteActive(true)}/>
                                 </div>

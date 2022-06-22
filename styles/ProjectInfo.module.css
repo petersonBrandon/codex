@@ -29,6 +29,47 @@
     font-size: calc(0.2em + 0.5vw);
 }
 
+.notFollowedIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 100%;
+    cursor: pointer;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.notFollowedIcon:hover {
+    color: #66fcf1;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.followedIcon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 100%;
+    cursor: pointer;
+    color: #66fcf1;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.followedIcon:hover {
+    color: #c5c6c7;
+
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
 .postsContainer {
     display: flex;
     flex-direction: column;
