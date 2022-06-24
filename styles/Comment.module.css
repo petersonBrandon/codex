@@ -1,0 +1,51 @@
+.commentContainer {
+    width: 100%;
+    background-color: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.commentHeader {
+    width: 100%;
+    background-color: #c5c6c7;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    font-size: calc(0.2em + 0.5vw);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.commentDelete {
+    cursor: pointer;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.commentDelete:hover {
+    color: #FF2323;
+    transition-timing-function: ease;
+    transition-duration: 0.5s;
+}
+
+.commentBody {
+    padding: 10px;
+    font-size: calc(0.3em + 0.5vw);
+}
+
+.commentFooter {
+    width: 100%;
+    background-color: #c5c6c7;
+    padding: 10px;
+    border-radius: 0px 0px 10px 10px;
+    font-size: calc(0.1em + 0.5vw);
+}
+
+.deletePopup { 
+    color: white;
+}

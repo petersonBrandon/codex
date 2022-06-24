@@ -132,7 +132,7 @@ const post = ({postData, isLoggedIn, userClearance, user}) => {
                                 </div>
                             </section>       
                     }
-                    <CommentSection post={post} user={user}/>
+                    <CommentSection post={post} user={user} isDashboard={true}/>
                     {deleteActive ? 
                     <div className={editStyles.popup_modal}>
                         <div className={editStyles.blur}></div>

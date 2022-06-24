@@ -34,9 +34,10 @@ export default async function handler(req, res) {
                 author: userData.userName,
                 text: commentData,
                 dateCreated: currentDate,
-                postId: postId
+                postId: postId,
+                userId: userData.userId
             })
-
+            console.log(commentData)
             post.comments.push({commentId: comment._id})
             try {
                 await comment.save();

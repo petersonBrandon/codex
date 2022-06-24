@@ -18,6 +18,11 @@ const commentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Post',
         required: true
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 

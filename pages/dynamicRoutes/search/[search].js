@@ -7,8 +7,10 @@ import Link from 'next/link'
 import { withIronSessionSsr } from 'iron-session/next'
 
 import styles from '../../../styles/searchResults.module.css'
+import postStyles from '../../../styles/ProjectInfo.module.css'
 import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
+import LikeButton from '../../../React-Components/Post/LikeButton';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({params, req}) => {
@@ -60,7 +62,8 @@ export const getServerSideProps = withIronSessionSsr (
                 props: { 
                     searchResults,
                     isLoggedIn: req.session.isLoggedIn,
-                    userClearance: req.session.clearance
+                    userClearance: req.session.clearance,
+                    user: req.session
                 }
             }
         } catch (error) {
@@ -78,7 +81,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const searchResults = ({searchResults, isLoggedIn, userClearance}) => {
+const searchResults = ({searchResults, isLoggedIn, userClearance, user}) => {
     let results = null;
     if (searchResults !== null) {
         results = JSON.parse(searchResults);
@@ -86,7 +89,7 @@ const searchResults = ({searchResults, isLoggedIn, userClearance}) => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Testing</title>
+                <title>Search Results</title>
                 <meta name="description" content="Check out this post!" />
                 <link rel="shortcut icon" href="/favicon.ico" />
                 <link rel="icon" href="/favicon.ico" />
@@ -98,21 +101,22 @@ const searchResults = ({searchResults, isLoggedIn, userClearance}) => {
                         <h1>Search Results:</h1>
                         <h2>Items found: {results.length}</h2>
                     </section>
-                    <section className={styles.results}>
-                        <div className={styles.resultsWrapper}>
-                            {results.map((post) => (
-                                <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
-                                    <div className={styles.post}>
-                                        <h1 className={styles.postTitle}>{post.title}</h1>
-                                        <div className={styles.postContent}>
-                                            <p className={styles.postText}>{post.excerpt}</p>
-                                            <p className={styles.postDate}>Date Created: {post.dateCreated}</p>
-                                        </div>
+                    {results.map((post) => (
+                        <div className={postStyles.post}>
+                            <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                                <div className={postStyles.postLink}>
+                                    <h1 className={postStyles.postTitle}>{post.title}</h1>
+                                    <div className={postStyles.postContent}>
+                                        <p className={postStyles.postText}>{post.excerpt}</p>
                                     </div>
-                                </Link>
-                            ))}
+                                </div>
+                            </Link>
+                            <div className={postStyles.postFooter}>
+                                <LikeButton post={post} user={user} />
+                                <p className={postStyles.postDate}>Date Created: {post.dateCreated}</p>
+                            </div>
                         </div>
-                    </section>
+                    ))}
                 </section>
             </main>
             <PageFooter />

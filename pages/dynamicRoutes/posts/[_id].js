@@ -7,6 +7,7 @@ import { withIronSessionSsr } from 'iron-session/next'
 import styles from '../../../styles/Post.module.css';
 import PageHeader from '../../../React-Components/PageHeader';
 import PageFooter from '../../../React-Components/PageFooter';
+import CommentSection from '../../../React-Components/Post/CommentSection';
 
 export const getServerSideProps = withIronSessionSsr (
     async ({params, req}) => {
@@ -25,7 +26,8 @@ export const getServerSideProps = withIronSessionSsr (
                 props: {
                     postData,
                     isLoggedIn: req.session.isLoggedIn,
-                    userClearance: req.session.clearance
+                    userClearance: req.session.clearance,
+                    user: req.session
                 }
             }
         } catch (error) {
@@ -43,7 +45,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const post = ({postData, isLoggedIn, userClearance}) => {
+const post = ({postData, isLoggedIn, userClearance, user}) => {
     const post = JSON.parse(postData);
     return (
         <div className={styles.container}>
@@ -66,6 +68,7 @@ const post = ({postData, isLoggedIn, userClearance}) => {
                             {post.text}
                         </p>
                     </div>
+                    <CommentSection post={post} user={user} isDashboard={false}/>
                 </section>
             </main>
             <PageFooter />

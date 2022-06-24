@@ -87,7 +87,7 @@ const project = ({projectData, postsData, isLoggedIn, userClearance, user}) => {
                     <section className={styles.postsContainer}>
                         {posts.map((post) => (
                             <div className={styles.post}>
-                                <Link key={post._id} href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
+                                <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
                                     <div className={styles.postLink}>
                                         <h1 className={styles.postTitle}>{post.title}</h1>
                                         <div className={styles.postContent}>
