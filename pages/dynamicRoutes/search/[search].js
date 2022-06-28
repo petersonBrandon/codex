@@ -102,8 +102,8 @@ const searchResults = ({searchResults, isLoggedIn, userClearance, user}) => {
                         <h2>Items found: {results.length}</h2>
                     </section>
                     {results.map((post) => (
-                        <div className={postStyles.post}>
-                            <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                        <div className={postStyles.post} key={post._id}>
+                            <Link href={`/dynamicRoutes/posts/${post._id}`} passHref>
                                 <div className={postStyles.postLink}>
                                     <h1 className={postStyles.postTitle}>{post.title}</h1>
                                     <div className={postStyles.postContent}>

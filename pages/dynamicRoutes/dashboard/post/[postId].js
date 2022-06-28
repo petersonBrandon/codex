@@ -51,7 +51,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const post = ({postData, isLoggedIn, userClearance, user}) => {
+const PostPage = ({postData, isLoggedIn, userClearance, user}) => {
     const post = JSON.parse(postData);
     const [editMode, setEditMode] = useState(false);
     const [deleteActive, setDeleteActive] = useState(false);
@@ -159,4 +159,4 @@ const post = ({postData, isLoggedIn, userClearance, user}) => {
     );
 };
 
-export default post;
+export default PostPage;

@@ -63,8 +63,8 @@ const New = ({ postsData, isLoggedIn, userClearance, user }) => {
                 <section className={styles.bodyContainer}>
                     {posts.length > 0 ? 
                         posts.map((post) => (
-                            <div className={postStyles.post}>
-                                <Link key={post._id} href={`/dynamicRoutes/posts/${post._id}`} passHref>
+                            <div className={postStyles.post} key={post._id}>
+                                <Link href={`/dynamicRoutes/posts/${post._id}`} passHref>
                                     <div className={postStyles.postLink}>
                                         <h1 className={postStyles.postTitle}>{post.title}</h1>
                                         <div className={postStyles.postContent}>

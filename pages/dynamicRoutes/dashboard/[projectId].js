@@ -63,7 +63,7 @@ export const getServerSideProps = withIronSessionSsr (
     }   
 )
 
-const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) => {
+const EditProjectPage = ({user, projectData, postsData, isLoggedIn, userClearance}) => {
     const project = JSON.parse(projectData);
     const posts = JSON.parse(postsData);
     const [editMode, setEditMode] = useState(false);
@@ -170,8 +170,8 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
                             </div>
                         :
                             posts.map((post) => (
-                                <div className={styles.post}>
-                                    <Link key={post._id} href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
+                                <div className={styles.post} key={post._id}>
+                                    <Link href={`/dynamicRoutes/dashboard/post/${post._id}`} passHref>
                                         <div className={styles.postLink}>
                                             <h1 className={styles.postTitle}>{post.title}</h1>
                                             <div className={styles.postContent}>
@@ -237,4 +237,4 @@ const editProject = ({user, projectData, postsData, isLoggedIn, userClearance}) 
     );
 };
 
-export default editProject;
+export default EditProjectPage;
