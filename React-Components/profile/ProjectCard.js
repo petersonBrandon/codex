@@ -8,9 +8,9 @@ const ProjectCard = ({project, user}) => {
                 <div className={styles.project_card_header}>
                     {project.title}
                 </div>
-                <div className={styles.project_card_body}>
+                {/* <div className={styles.project_card_body}>
                     {project.description}
-                </div>
+                </div> */}
             </a>
             <div className={styles.project_card_footer}>
                 <FollowButton project={project} user={user}/>
